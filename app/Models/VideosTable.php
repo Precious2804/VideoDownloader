@@ -13,9 +13,10 @@ class VideosTable extends Model
         'unique_id',
         'title',
         'type',
+        'name',
         'size',
         'video_type',
-        'video_url',
+        'url',
         'subtitle',
         'description',
         'image'

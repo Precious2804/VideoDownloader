@@ -82,97 +82,16 @@
                 <!--  BEGIN SIDEBAR  -->
                 @include('/partials/sidebar')
                 <!--  END SIDEBAR  -->
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
-                    <div class="widget-two">
-                        <div class="widget-content">
-                            <div class="w-numeric-value">
-                                <div class="w-content">
-                                    <span class="w-value">Video Upload</span> <br>
-                                    <span class="w-numeric-title">Most recent Video Upload.</span> <br>
-                                    <span class="w-numeric-title">Title: <a href="" style="color: #009688;">{{$lastVideo['title']}}</a></span>
-                                </div>
-                                <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign">
-                                        <line x1="12" y1="1" x2="12" y2="23"></line>
-                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                    </svg>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
-                    <div class="widget-two">
-                        <div class="widget-content">
-                            <div class="w-numeric-value">
-                                <div class="w-content">
-                                    <span class="w-value">Youtube Video</span> <br>
-                                    <span class="w-numeric-title">Most Recent Youtube Video.</span> <br>
-                                    <span class="w-numeric-title">Title: <a href="" style="color: #009688;">{{$lastYoutube['title']}}</a></span>
-                                </div>
-                                <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign">
-                                        <line x1="12" y1="1" x2="12" y2="23"></line>
-                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                    </svg>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
-                    <div class="widget-two">
-                        <div class="widget-content">
-                            <div class="w-numeric-value">
-                                <div class="w-content">
-                                    <span class="w-value">Utorrent Video</span> <br>
-                                    <span class="w-numeric-title">Most recent Utorrent Upload.</span> <br>
-                                    <span class="w-numeric-title">Title: <a href="" style="color: #009688;">{{$lastUtorrent['title']}}</a></span>
-                                </div>
-                                <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign">
-                                        <line x1="12" y1="1" x2="12" y2="23"></line>
-                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                    </svg>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
-                    <div class="widget-two">
-                        <div class="widget-content">
-                            <div class="w-numeric-value">
-                                <div class="w-content">
-                                    <span class="w-value">Audio Upload</span> <br>
-                                    <span class="w-numeric-title">Most recent Audio upload.</span> <br>
-                                    <span class="w-numeric-title">Title: <a href="" style="color: #009688;">{{$lastAudio['title']}}</a></span>
-                                </div>
-                                <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign">
-                                        <line x1="12" y1="1" x2="12" y2="23"></line>
-                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                    </svg>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                     <div class="widget-content widget-content-area br-6">
-                        <h5 style="color: #009688; font-weight: 700; font-size: 13px;border: none;letter-spacing: 1px;text-transform: uppercase;">Last Five (5) Uploads</h5>
+                        <h5 style="color: #009688; font-weight: 700; font-size: 13px;border: none;letter-spacing: 1px;text-transform: uppercase;">All Video and Audio Contents</h5>
                         @if(Session::get('deleted'))
                         <div class="alert alert-success">
                             {{Session::get('deleted')}}
                         </div>
                         @endif
                         <div class="table-responsive mb-4 mt-4">
-                            <table id="" class="table table-hover" style="width:100%">
+                            <table id="html5-extension" class="table table-hover non-hover" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -195,7 +114,17 @@
                                         <td>{{$item->created_at}}</td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="{{route('all-uploads')}}"><button type="button" class="btn btn-dark btn-sm">View All</button></a>
+                                                <button type="button" class="btn btn-dark btn-sm">Open</button>
+                                                <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
+                                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                                    </svg>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuReference1">
+                                                    <a class="dropdown-item" href="/edit/{{$item->unique_id}}">Edit</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a style="background-color: red;" class="dropdown-item" href="/delete/{{$item->unique_id}}">Delete</a>
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
@@ -205,6 +134,7 @@
                         </div>
                     </div>
                 </div>
+
 
                 <!--  BEGIN CONTENT AREA  -->
 

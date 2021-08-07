@@ -16,8 +16,8 @@
 
         <ul class="navbar-item theme-brand flex-row  text-center">
             <li class="nav-item theme-logo">
-                <a href="index-2.html">
-                    <img src="assets/img/logo.svg" class="navbar-logo" alt="logo">
+                <a href="{{route('dashboard')}}">
+                    <img src="{{URL::asset('assets/img/logo.svg')}}" class="navbar-logo" alt="logo">
                 </a>
             </li>
             <li class="nav-item theme-text">
@@ -91,9 +91,9 @@
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12 float-left">
                                     <h4>Upload A New Video Here</h4>
                                     @if(Session::get('success'))
-                                        <div class="alert alert-success">
-                                            {{Session::get('success')}}
-                                        </div>
+                                    <div class="alert alert-success">
+                                        {{Session::get('success')}}
+                                    </div>
                                     @endif
                                 </div>
                             </div>
@@ -102,46 +102,50 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <form method="POST" action="{{route('do_upload_video')}}" enctype="multipart/form-data">
-                                @csrf
+                                    @csrf
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Title</label>
+                                            <label for="inputEmail4">Title <span style="color: red;">*</span></label>
                                             <input type="title" name="title" class="form-control" value="{{old('title')}}" id="inputEmail4" placeholder="Enter the title of the video">
                                             <span class="text-danger">@error('title'){{ "$message" }}@enderror</span>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="inputPassword4">Select FIle Type</label>
-                                            <input type="text" name="type" class="form-control" value="{{old('type')}}"  id="inputEmail4" placeholder="Enter File Type Here">
+                                            <label for="inputPassword4">Select FIle Type <span style="color: red;">*</span></label>
+                                            <input type="text" name="type" class="form-control" value="{{old('type')}}" id="inputEmail4" placeholder="Enter File Type Here">
                                             <span class="text-danger">@error('type'){{ "$message" }}@enderror</span>
                                         </div>
                                     </div>
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">File Size Here</label>
-                                            <input type="text" name="size" class="form-control" value="{{old('size')}}"  id="inputEmail4" placeholder="Enter File Size Here">
+                                            <input type="text" name="size" class="form-control" value="{{old('size')}}" id="inputEmail4" placeholder="Enter File Size Here">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="basic-url">Video URL Here</label>
-                                            <input type="url" name="video_url" value="{{old('video_url')}}"  class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the the video URL here">
+                                            <label for="basic-url">Video URL Here <span style="color: red;">*</span></label>
+                                            <input type="url" name="video_url" value="{{old('video_url')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the video URL here">
                                             <span class="text-danger">@error('video_url'){{ "$message" }}@enderror</span>
                                         </div>
                                     </div>
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-6">
-                                            <label for="basic-url">Subtitle URL Here</label>
-                                            <input type="url" name="subtitle" value="{{old('subtitle')}}"  class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the the video URL here">
+                                            <label for="basic-url">Subtitle URL Here <span style="color: red;">*</span></label>
+                                            <input type="url" name="subtitle" value="{{old('subtitle')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the the video URL here">
                                             <span class="text-danger">@error('subtitle'){{ "$message" }}@enderror</span>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="basic-url">Brief Description </label>
                                             <input type="text" name="description" class="form-control" aria-describedby="basic-addon3" placeholder="Brief Description of the video here">
                                         </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="basic-url">Produced by:</label>
+                                            <input type="name" name="name" value="{{old('name')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Video Producer here">
+                                        </div>
                                     </div>
-                                    <div class="form-row mb-4"> 
+                                    <div class="form-row mb-4">
                                         <div class="form-group col-md-6">
                                             <div class="widget-content widget-content-area">
                                                 <div class="custom-file-container" data-upload-id="myFirstImage">
-                                                    <label>Choose a Featured Image <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                                                    <label>Choose a Featured Image <span style="color: red;">*</span> <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
                                                     <label class="custom-file-container__custom-file">
                                                         <input type="file" name="image" class="custom-file-container__custom-file__custom-file-input" accept="image/*">
                                                         <span class="text-danger">@error('image'){{ "$message" }}@enderror</span>

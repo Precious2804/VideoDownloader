@@ -43,15 +43,16 @@ trait Generics
                 'unique_id' => $unique_id,
                 'title' => $req->title,
                 'type' => $req->type,
+                'name'=>$req->name,
                 'size' => $req->size,
                 'video_type'=>$video_type,
-                $upload => $url,
+                'url' => $url,
                 'subtitle' => $req->subtitle,
                 'description' => $req->description,
                 'image'=>$req->image = '/storage/' . $filePath
             ]);
             if($result){
-                return back()->with('success', "The Video has been uploaded Successfully");
+                return back()->with('success', "The File Upload was Successfully Completed!!!");
             }
         }
     }

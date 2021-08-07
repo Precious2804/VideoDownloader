@@ -17,14 +17,14 @@
                         </a>
                     </li>
                     <li class="menu">
-                        <a href="widgets.html" aria-expanded="false" class="dropdown-toggle">
+                        <a href="{{route('upload-youtube')}}" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <span>Youtube</span>
                             </div>
                         </a>
                     </li>
                     <li class="menu">
-                        <a href="widgets.html" aria-expanded="false" class="dropdown-toggle">
+                        <a href="{{route('upload-utorrent')}}" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <span>Torrent</span>
                             </div>
@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li class="menu">
-                        <a href="#" aria-expanded="false" class="dropdown-toggle">
+                        <a href="{{route('all-uploads')}}" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <span>All Uploads</span>
                             </div>

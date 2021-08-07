@@ -58,7 +58,7 @@
                     <nav class="breadcrumb-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><span>Upload an Audio</span></li>
+                            <li class="breadcrumb-item active" aria-current="page"><span>Upload a youtube video</span></li>
                         </ol>
                     </nav>
 
@@ -89,7 +89,7 @@
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12 float-left">
-                                    <h4>Upload an Audio file Here</h4>
+                                    <h4>Upload a Youtube Video Here</h4>
                                     @if(Session::get('success'))
                                     <div class="alert alert-success">
                                         {{Session::get('success')}}
@@ -101,12 +101,12 @@
                         <hr>
                         <div class="row">
                             <div class="col-lg-12">
-                                <form method="POST" action="{{route('do_upload_audio')}}" enctype="multipart/form-data">
+                                <form method="POST" action="{{route('do-upload-youtube')}}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Title <span style="color: red;">*</span></label>
-                                            <input type="title" name="title" class="form-control" value="{{old('title')}}" id="inputEmail4" placeholder="Enter the title of the video">
+                                            <input type="title" name="title" class="form-control" value="{{old('title')}}" id="inputEmail4" placeholder="Enter the title of the youtube video">
                                             <span class="text-danger">@error('title'){{ "$message" }}@enderror</span>
                                         </div>
                                         <div class="form-group col-md-6">
@@ -121,13 +121,13 @@
                                             <input type="text" name="size" class="form-control" value="{{old('size')}}" id="inputEmail4" placeholder="Enter File Size Here">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="basic-url">Audio URL Here <span style="color: red;">*</span></label>
-                                            <input type="url" name="audio_url" value="{{old('audio_url')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the Audio URL here">
-                                            <span class="text-danger">@error('audio_url'){{ "$message" }}@enderror</span>
+                                            <label for="basic-url">Enter Youtube URL Here <span style="color: red;">*</span></label>
+                                            <input type="url" name="youtube_url" value="{{old('youtube_url')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the Youtube URL here">
+                                            <span class="text-danger">@error('youtube_url'){{ "$message" }}@enderror</span>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="basic-url">Song By:</label>
-                                            <input type="name" name="name" value="{{old('name')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Song maker/author here">
+                                            <label for="basic-url">Creator/Content Maker:</label>
+                                            <input type="name" name="name" value="{{old('name')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Creator/Content Maker Here">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="basic-url">Brief Description </label>
@@ -138,7 +138,7 @@
                                         <div class="form-group col-md-6">
                                             <div class="widget-content widget-content-area">
                                                 <div class="custom-file-container" data-upload-id="myFirstImage">
-                                                    <label>Choose a Featured Image <span style="color: red;">*</span> <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                                                    <label>Choose a Featured Image  <span style="color: red;">*</span> <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
                                                     <label class="custom-file-container__custom-file">
                                                         <input type="file" name="image" class="custom-file-container__custom-file__custom-file-input" accept="image/*">
                                                         <span class="text-danger">@error('image'){{ "$message" }}@enderror</span>
@@ -151,7 +151,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-6">
-                                        <button type="submit" class="btn btn-lg btn-secondary">Upload Audio Now</button>
+                                        <button type="submit" class="btn btn-lg btn-secondary">Upload Youtube Content Now</button>
                                     </div>
                                 </form>
                             </div>

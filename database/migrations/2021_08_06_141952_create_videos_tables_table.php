@@ -18,9 +18,10 @@ class CreateVideosTablesTable extends Migration
             $table->uuid('unique_id');
             $table->string('title');
             $table->string('type');
+            $table->string('name')->nullable();
             $table->string('size')->nullable();
             $table->string('video_type');
-            $table->string('video_url');
+            $table->string('url');
             $table->string('subtitle')->nullable();
             $table->longText('description')->nullable();
             $table->string('image')->nullable();

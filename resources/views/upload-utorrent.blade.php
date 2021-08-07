@@ -58,7 +58,7 @@
                     <nav class="breadcrumb-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><span>Upload an Audio</span></li>
+                            <li class="breadcrumb-item active" aria-current="page"><span>Upload a Utorrent Video</span></li>
                         </ol>
                     </nav>
 
@@ -89,7 +89,7 @@
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12 float-left">
-                                    <h4>Upload an Audio file Here</h4>
+                                    <h4>Upload a Utorrent Video Here</h4>
                                     @if(Session::get('success'))
                                     <div class="alert alert-success">
                                         {{Session::get('success')}}
@@ -101,7 +101,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-lg-12">
-                                <form method="POST" action="{{route('do_upload_audio')}}" enctype="multipart/form-data">
+                                <form method="POST" action="{{route('do-upload-utorrent')}}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-6">
@@ -121,13 +121,13 @@
                                             <input type="text" name="size" class="form-control" value="{{old('size')}}" id="inputEmail4" placeholder="Enter File Size Here">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="basic-url">Audio URL Here <span style="color: red;">*</span></label>
-                                            <input type="url" name="audio_url" value="{{old('audio_url')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the Audio URL here">
-                                            <span class="text-danger">@error('audio_url'){{ "$message" }}@enderror</span>
+                                            <label for="basic-url">Enter Utorrent URL Here <span style="color: red;">*</span></label>
+                                            <input type="url" name="utorrent_url" value="{{old('utorrent_url')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the Utorrent URL here">
+                                            <span class="text-danger">@error('utorrent_url'){{ "$message" }}@enderror</span>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="basic-url">Song By:</label>
-                                            <input type="name" name="name" value="{{old('name')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Song maker/author here">
+                                            <label for="basic-url">Produced By:</label>
+                                            <input type="name" name="name" value="{{old('name')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Name of Producer Here">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="basic-url">Brief Description </label>
@@ -151,7 +151,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group col-lg-6">
-                                        <button type="submit" class="btn btn-lg btn-secondary">Upload Audio Now</button>
+                                        <button type="submit" class="btn btn-lg btn-secondary">Upload Utorrent Video Now</button>
                                     </div>
                                 </form>
                             </div>
