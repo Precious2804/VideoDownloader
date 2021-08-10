@@ -161,5 +161,4 @@ class MainController extends Controller
         $video = ['video'=>VideosTable::where('unique_id', $unique_id)->first()];
         return view('download-video')->with($video);
     }
-
 }
