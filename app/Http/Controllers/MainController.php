@@ -156,4 +156,10 @@ class MainController extends Controller
         $video_type = "UTorrent";
         return $this->insertIntoVideosTable($req, $upload, $url, $video_type);
     }
+
+    public function downloadVideo($unique_id){
+        $video = ['video'=>VideosTable::where('unique_id', $unique_id)->first()];
+        return view('download-video')->with($video);
+    }
+
 }

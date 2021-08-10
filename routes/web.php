@@ -19,6 +19,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::post('do-login', [MainController::class, 'doLogin'])->name('do-login');
+Route::get('/download-video/{unique_id}', [MainController::class, 'downloadVideo'])->name('download-video');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard', [MainController::class, 'dashboard'])->name('dashboard');

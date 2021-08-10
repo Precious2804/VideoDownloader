@@ -44,13 +44,13 @@
                             </div>
                         </a>
                     </li>
-                    <li class="menu">
+                    <!-- <li class="menu">
                         <a href="widgets.html" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <span>Profile</span>
                             </div>
                         </a>
-                    </li>
+                    </li> -->
                     <li class="menu">
                         <a href="{{route('logout')}}" aria-expanded="false" class="dropdown-toggle">
                             <div class="">

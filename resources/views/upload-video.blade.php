@@ -128,7 +128,7 @@
                                     </div>
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-6">
-                                            <label for="basic-url">Subtitle URL Here <span style="color: red;">*</span></label>
+                                            <label for="basic-url">Subtitle URL Here </label>
                                             <input type="url" name="subtitle" value="{{old('subtitle')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the the video URL here">
                                             <span class="text-danger">@error('subtitle'){{ "$message" }}@enderror</span>
                                         </div>
