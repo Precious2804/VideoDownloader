@@ -58,7 +58,7 @@
                     <nav class="breadcrumb-one" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><span>Upload A Video</span></li>
+                            <li class="breadcrumb-item active" aria-current="page"><span>Create Admin</span></li>
                         </ol>
                     </nav>
 
@@ -73,22 +73,24 @@
 <div class="main-container" id="container">
     <div class="overlay"></div>
     <div class="search-overlay"></div>
-
+    
     <!--  BEGIN SIDEBAR  -->
     @include('/partials/sidebar')
     <!--  END SIDEBAR  -->
+
     <!--  BEGIN CONTENT AREA  -->
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
 
             <div class="row layout-top-spacing">
 
+
                 <div id="card_4" class="col-lg-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
                         <div class="widget-header">
                             <div class="row">
                                 <div class="col-xl-12 col-md-12 col-sm-12 col-12 float-left">
-                                    <h4>Upload A New Video Here</h4>
+                                    <h4>Create a new Admin</h4>
                                     @if(Session::get('success'))
                                     <div class="alert alert-success">
                                         {{Session::get('success')}}
@@ -100,63 +102,48 @@
                         <hr>
                         <div class="row">
                             <div class="col-lg-12">
-                                <form method="POST" action="{{route('do_upload_video')}}" enctype="multipart/form-data">
+                                <form method="POST" action="{{route('do_create_admin')}}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Title <span style="color: red;">*</span></label>
-                                            <input type="title" name="title" class="form-control" value="{{old('title')}}" id="inputEmail4" placeholder="Enter the title of the video">
-                                            <span class="text-danger">@error('title'){{ "$message" }}@enderror</span>
+                                            <label for="inputEmail4">Name <span style="color: red;">*</span></label>
+                                            <input type="text" name="name" class="form-control" value="{{old('name')}}" id="inputEmail4" placeholder="Enter name">
+                                            <span class="text-danger">@error('name'){{ "$message" }}@enderror</span>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="inputPassword4">Select FIle Type (e.g. MP4, Avi, 3gp) <span style="color: red;">*</span></label>
-                                            <input type="text" name="type" class="form-control" value="{{old('type')}}" id="inputEmail4" placeholder="Enter File Type">
-                                            <span class="text-danger">@error('type'){{ "$message" }}@enderror</span>
+                                            <label for="inputPassword4">Email <span style="color: red;">*</span></label>
+                                            <input type="email" name="email" class="form-control" value="{{old('email')}}" id="inputEmail4" placeholder="Enter email">
+                                            <span class="text-danger">@error('email'){{ "$message" }}@enderror</span>
                                         </div>
                                     </div>
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-6">
-                                            <label for="inputEmail4">File Size (e.g. 100MB)</label>
-                                            <input type="text" name="size" class="form-control" value="{{old('size')}}" id="inputEmail4" placeholder="Enter File Size">
+                                            <label for="inputEmail4">Phone Number</label>
+                                            <input type="tel" name="phone" class="form-control" value="{{old('phone')}}" id="inputEmail4" placeholder="Enter Phone Number">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="basic-url">Video URL <span style="color: red;">*</span></label>
-                                            <input type="url" name="video_url" value="{{old('video_url')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the video URL">
-                                            <span class="text-danger">@error('video_url'){{ "$message" }}@enderror</span>
+                                            <label for="inputEmail4">Select User Type <span style="color: red;">*</span></label>
+                                            <select name="user_type" id="" class="form-control custom-select">
+                                                <option value="">Select Type</option>
+                                                <option value="Admin">Admin</option>
+                                                <option value="Super Admin">Super Admin</option>
+                                            </select>
+                                            <span class="text-danger">@error('user_type'){{ "$message" }}@enderror</span>
                                         </div>
                                     </div>
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-6">
-                                            <label for="basic-url">Subtitle URL </label>
-                                            <input type="url" name="subtitle" value="{{old('subtitle')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the the video URL">
-                                            <span class="text-danger">@error('subtitle'){{ "$message" }}@enderror</span>
+                                            <label for="basic-url">Password <span style="color: red;">*</span></label>
+                                            <input type="password" name="password" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Enter Password">
+                                            <span class="text-danger">@error('password'){{ "$message" }}@enderror</span>
                                         </div>
-                                    </div>
-                                    <div class="form-row mb-4">
+                                        <div class="form-group col-md-6">
+                                            <label for="basic-url">Repeat Password <span style="color: red;">*</span></label>
+                                            <input type="password" name="password_confirmation" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Enter Password">
+                                            <span class="text-danger">@error('password_confirmation'){{ "$message" }}@enderror</span>
+                                        </div>
                                         <div class="form-group col-lg-12">
-                                            <label for="basic-url">Video Description </label>
-                                            <textarea name="description" class="form-control" id="" cols="30" rows="10" placeholder="Describe the video here"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-row mb-4">
-                                        <div class="form-group col-md-6">
-                                            <div class="widget-content widget-content-area">
-                                                <div class="custom-file-container" data-upload-id="myFirstImage">
-                                                    <label>Choose a Featured Image <span style="color: red;">*</span> <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
-                                                    <label class="custom-file-container__custom-file">
-                                                        <input type="file" name="image" class="custom-file-container__custom-file__custom-file-input" accept="image/*">
-                                                        <span class="text-danger">@error('image'){{ "$message" }}@enderror</span>
-                                                        <!-- <input type="hidden" name="MAX_FILE_SIZE" value="10485760" /> -->
-                                                        <span class="custom-file-container__custom-file__custom-file-control"></span>
-                                                    </label>
-                                                    <div class="custom-file-container__image-preview"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-row mb-4">
-                                        <div class="form-group col-lg-12">
-                                            <button type="submit" class="btn btn-lg btn-secondary float-right">Upload Video Now</button>
+                                            <button type="submit" class="btn btn-lg btn-secondary float-right">Create Now</button>
                                         </div>
                                     </div>
                                 </form>

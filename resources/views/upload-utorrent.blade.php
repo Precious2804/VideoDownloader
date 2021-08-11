@@ -71,18 +71,17 @@
 
 <!--  BEGIN MAIN CONTAINER  -->
 <div class="main-container" id="container">
+    <div class="overlay"></div>
+    <div class="search-overlay"></div>
+
+    <!--  BEGIN SIDEBAR  -->
+    @include('/partials/sidebar')
+    <!--  END SIDEBAR  -->
     <!--  BEGIN CONTENT AREA  -->
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
 
             <div class="row layout-top-spacing">
-
-                <div class="overlay"></div>
-                <div class="search-overlay"></div>
-
-                <!--  BEGIN SIDEBAR  -->
-                @include('/partials/sidebar')
-                <!--  END SIDEBAR  -->
 
                 <div id="card_4" class="col-lg-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
@@ -129,9 +128,11 @@
                                             <label for="basic-url">Produced By:</label>
                                             <input type="name" name="name" value="{{old('name')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Name of Producer Here">
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="basic-url">Brief Description </label>
-                                            <input type="text" name="description" class="form-control" aria-describedby="basic-addon3" placeholder="Brief Description of the video here">
+                                    </div>
+                                    <div class="form-row mb-4">
+                                        <div class="form-group col-lg-12">
+                                            <label for="basic-url">Video Description </label>
+                                            <textarea name="description" class="form-control" id="" cols="30" rows="10" placeholder="Describe the video here"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-row mb-4">
@@ -150,8 +151,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-lg-6">
-                                        <button type="submit" class="btn btn-lg btn-secondary">Upload Utorrent Video Now</button>
+                                    <div class="form-row mb-4">
+                                        <div class="form-group col-lg-12">
+                                            <button type="submit" class="btn btn-lg btn-secondary float-right">Upload Utorrent Video Now</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

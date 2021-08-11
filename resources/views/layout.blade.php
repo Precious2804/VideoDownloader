@@ -120,8 +120,6 @@
 </head>
 
 <body>
-
-
     @yield('content')
 
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->

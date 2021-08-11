@@ -70,18 +70,18 @@
 
 <!--  BEGIN MAIN CONTAINER  -->
 <div class="main-container" id="container">
+    <div class="overlay"></div>
+    <div class="search-overlay"></div>
+
+    <!--  BEGIN SIDEBAR  -->
+    @include('/partials/sidebar')
+    <!--  END SIDEBAR  -->
     <!--  BEGIN CONTENT AREA  -->
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
 
             <div class="row layout-top-spacing">
 
-                <div class="overlay"></div>
-                <div class="search-overlay"></div>
-
-                <!--  BEGIN SIDEBAR  -->
-                @include('/partials/sidebar')
-                <!--  END SIDEBAR  -->
                 <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
                     <div class="widget-two">
                         <div class="widget-content">
@@ -89,13 +89,7 @@
                                 <div class="w-content">
                                     <span class="w-value">Video Upload</span> <br>
                                     <span class="w-numeric-title">Most recent Video Upload.</span> <br>
-                                    <span class="w-numeric-title">Title: <a href="" style="color: #009688;">{{$lastVideo['title']}}</a></span>
-                                </div>
-                                <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign">
-                                        <line x1="12" y1="1" x2="12" y2="23"></line>
-                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                    </svg>
+                                    <span class="w-numeric-title">Title: <a href="/download-video/{{$lastVideo['unique_id']}}" target="_blank" style="color: #009688;">{{$lastVideo['title']}}</a></span>
                                 </div>
                             </div>
 
@@ -109,16 +103,9 @@
                                 <div class="w-content">
                                     <span class="w-value">Youtube Video</span> <br>
                                     <span class="w-numeric-title">Most Recent Youtube Video.</span> <br>
-                                    <span class="w-numeric-title">Title: <a href="" style="color: #009688;">{{$lastYoutube['title']}}</a></span>
-                                </div>
-                                <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign">
-                                        <line x1="12" y1="1" x2="12" y2="23"></line>
-                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                    </svg>
+                                    <span class="w-numeric-title">Title: <a href="/download-video/{{$lastYoutube['unique_id']}}" target="_blank" style="color: #009688;">{{$lastYoutube['title']}}</a></span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -129,16 +116,9 @@
                                 <div class="w-content">
                                     <span class="w-value">Utorrent Video</span> <br>
                                     <span class="w-numeric-title">Most recent Utorrent Upload.</span> <br>
-                                    <span class="w-numeric-title">Title: <a href="" style="color: #009688;">{{$lastUtorrent['title']}}</a></span>
-                                </div>
-                                <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign">
-                                        <line x1="12" y1="1" x2="12" y2="23"></line>
-                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                    </svg>
+                                    <span class="w-numeric-title">Title: <a href="/download-video/{{$lastUtorrent['unique_id']}}" target="_blank" style="color: #009688;">{{$lastUtorrent['title']}}</a></span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -149,16 +129,9 @@
                                 <div class="w-content">
                                     <span class="w-value">Audio Upload</span> <br>
                                     <span class="w-numeric-title">Most recent Audio upload.</span> <br>
-                                    <span class="w-numeric-title">Title: <a href="" style="color: #009688;">{{$lastAudio['title']}}</a></span>
-                                </div>
-                                <div class="w-icon">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign">
-                                        <line x1="12" y1="1" x2="12" y2="23"></line>
-                                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                    </svg>
+                                    <span class="w-numeric-title">Title: <a href="/download-video/{{$lastAudio['unique_id']}}" target="_blank" style="color: #009688;">{{$lastAudio['title']}}</a></span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

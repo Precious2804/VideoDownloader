@@ -87,34 +87,27 @@
                     <div class="user-profile layout-spacing">
                         <div class="widget-content widget-content-area">
                             <div class="text-center user-info">
-                                <img src="{{URL::asset($findUpload['image'])}}" width="200px" height="150px" alt="avatar">
-                                <p class="">{{$findUpload['title']}}</p>
+                                @if(!$user['image'])
+                                <img src="{{URL::asset('assets/img/blank-image.PNG')}}" width="200px" height="150px" alt="avatar">
+                                @else
+                                <img src="{{URL::asset($user['image'])}}" alt="" width="200px" height="150px">
+                                @endif
+                                <p class="">{{$user['name']}}</p>
                             </div>
                             <div class="user-info-list">
                                 <div class="">
                                     <ul class="contacts-block list-unstyled">
                                         <li class="contacts-block__item">
-                                            File type: <span style="color: #009688;">{{$findUpload['type']}}</span>
+                                            Name: <span style="color: #009688;">{{$user['name']}}</span>
                                         </li>
                                         <li class="contacts-block__item">
-                                            Producer/Artiste: <span style="color: #009688;">{{$findUpload['name']}}</span>
+                                            Email <span style="color: #009688;">{{$user['email']}}</span>
                                         </li>
                                         <li class="contacts-block__item">
-                                            File Size: <span style="color: #009688;">{{$findUpload['size']}}</span>
+                                            Phone Number <span style="color: #009688;">{{$user['phone']}}</span>
                                         </li>
                                         <li class="contacts-block__item">
-                                            Category: <span style="color: #009688;">{{$findUpload['video_type']}}</span>
-                                        </li>
-                                        <li class="contacts-block__item">
-                                            URL: <span style="color: #009688;">{{$findUpload['url']}}</span>
-                                        </li>
-                                        @if($findUpload['video_type'] == "Video")
-                                        <li class="contacts-block__item">
-                                            Subtile: <span style="color: #009688;">{{$findUpload['subtitle']}}</span>
-                                        </li>
-                                        @endif
-                                        <li class="contacts-block__item">
-                                            Creation Date/Time: <span style="color: #009688;">{{$findUpload['created_at']}}</span>
+                                            User Type: <span style="color: #009688;">{{$user['user_type']}}</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -127,55 +120,33 @@
 
                     <div class="skills layout-spacing ">
                         <div class="widget-content widget-content-area">
-                            <h3 class="">Edit details</h3>
-                            @if(Session::get('updated'))
+                            <h3 class="">Edit Profile</h3>
+                            @if(Session::get('success'))
                             <div class="alert alert-success">
-                                {{Session::get('updated')}}
+                                {{Session::get('success')}}
                             </div>
                             @endif
-                            <form method="POST" action="{{route('do_edit')}}" enctype="multipart/form-data">
+                            @if(Session::get('pass_update'))
+                            <div class="alert alert-success">
+                                {{Session::get('pass_update')}}
+                            </div>
+                            @endif
+                            <form method="POST" action="{{route('do_edit_profile')}}" enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" name="unique_id" value="{{$findUpload['unique_id']}}" id="">
                                 <div class="form-row mb-4">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Title</label>
-                                        <input type="title" name="title" class="form-control" value="{{$findUpload['title']}}" id="inputEmail4">
+                                        <label for="inputEmail4">Name</label>
+                                        <input type="text" name="name" class="form-control" value="{{$user['name']}}" id="inputEmail4">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">FIle Type</label>
-                                        <input type="text" name="type" class="form-control" value="{{$findUpload['type']}}" id="inputEmail4">
+                                        <label for="inputPassword4">Email</label>
+                                        <input type="email" name="email" class="form-control" value="{{$user['email']}}" id="inputEmail4">
                                     </div>
                                 </div>
                                 <div class="form-row mb-4">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">File Size Here</label>
-                                        <input type="text" name="size" class="form-control" value="{{$findUpload['size']}}" id="inputEmail4">
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="basic-url">Video URL Here</label>
-                                        <input type="url" name="url" value="{{$findUpload['url']}}" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                                        <span class="text-danger">@error('url'){{ "$message" }}@enderror</span>
-                                    </div>
-                                </div>
-                                <div class="form-row mb-4">
-                                    <div class="form-group col-md-6">
-                                        <label for="basic-url">Subtitle URL Here</label>
-                                        @if($findUpload['video_type'] == "Video")
-                                        <input type="url" name="subtitle" value="{{$findUpload['subtitle']}}" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                                        <span class="text-danger">@error('subtitle'){{ "$message" }}@enderror</span>
-                                        @else
-                                        <input type="url" name="subtitle" disabled value="Subtitle cannot be added for this content" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                                        @endif
-                                    </div>
-                                    @if($findUpload['video_type'] != "Audio")
-                                    <div class="form-group col-md-6">
-                                        <label for="basic-url">Brief Description </label>
-                                        <input type="text" name="description" value="{{$findUpload['description']}}" class="form-control" aria-describedby="basic-addon3">
-                                    </div>
-                                    @endif
-                                    <div class="form-group col-md-6">
-                                        <label for="basic-url">Produced by:</label>
-                                        <input type="name" name="name" value="{{$findUpload['name']}}" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                        <label for="inputEmail4">Phone Number</label>
+                                        <input type="tel" name="phone" class="form-control" value="{{$user['phone']}}" id="inputEmail4">
                                     </div>
                                 </div>
                                 <div class="form-row mb-4">
@@ -193,19 +164,43 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-lg-6">
-                                        <button type="submit" class="btn btn-lg btn-secondary float-right">Edit Now</button>
+                                </div>
+                                <div class="form-row mb-4">
+                                    <div class="form-group col-lg-12">
+                                        <button type="submit" class="btn btn-lg btn-secondary float-right">Edit Profile Now</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-
-
-                <!--  BEGIN CONTENT AREA  -->
-
-
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
+                    <div class="skills layout-spacing ">
+                        <div class="widget-content widget-content-area">
+                            <h3 class="">Change Password</h3>
+                            <form method="POST" action="{{route('change_password')}}">
+                                @csrf
+                                <div class="form-group col-lg-12">
+                                    <label for="inputEmail4">Current Password</label>
+                                    <input type="password" name="old_password" class="form-control" id="inputEmail4">
+                                    <span class="text-danger">@error('old_password'){{ "$message" }}@enderror</span>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label for="inputEmail4">New Password</label>
+                                    <input type="password" name="password" class="form-control" id="inputEmail4">
+                                    <span class="text-danger">@error('password'){{ "$message" }}@enderror</span>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label for="inputEmail4">Confirm new Password</label>
+                                    <input type="password" name="password_confirmation" class="form-control" id="inputEmail4">
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <button type="submit" class="btn btn-lg btn-secondary">Change Password</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="footer-wrapper">

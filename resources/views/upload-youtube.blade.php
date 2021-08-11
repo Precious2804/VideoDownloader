@@ -71,18 +71,17 @@
 
 <!--  BEGIN MAIN CONTAINER  -->
 <div class="main-container" id="container">
+    <div class="overlay"></div>
+    <div class="search-overlay"></div>
+
+    <!--  BEGIN SIDEBAR  -->
+    @include('/partials/sidebar')
+    <!--  END SIDEBAR  -->
     <!--  BEGIN CONTENT AREA  -->
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
 
             <div class="row layout-top-spacing">
-
-                <div class="overlay"></div>
-                <div class="search-overlay"></div>
-
-                <!--  BEGIN SIDEBAR  -->
-                @include('/partials/sidebar')
-                <!--  END SIDEBAR  -->
 
                 <div id="card_4" class="col-lg-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
@@ -111,34 +110,36 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputPassword4">Select FIle Type <span style="color: red;">*</span></label>
-                                            <input type="text" name="type" class="form-control" value="{{old('type')}}" id="inputEmail4" placeholder="Enter File Type Here">
+                                            <input type="text" name="type" class="form-control" value="{{old('type')}}" id="inputEmail4" placeholder="Enter File Type">
                                             <span class="text-danger">@error('type'){{ "$message" }}@enderror</span>
                                         </div>
                                     </div>
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-6">
-                                            <label for="inputEmail4">File Size Here</label>
-                                            <input type="text" name="size" class="form-control" value="{{old('size')}}" id="inputEmail4" placeholder="Enter File Size Here">
+                                            <label for="inputEmail4">File Size</label>
+                                            <input type="text" name="size" class="form-control" value="{{old('size')}}" id="inputEmail4" placeholder="Enter File Size">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="basic-url">Enter Youtube URL Here <span style="color: red;">*</span></label>
-                                            <input type="url" name="youtube_url" value="{{old('youtube_url')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the Youtube URL here">
+                                            <label for="basic-url">Enter Youtube URL <span style="color: red;">*</span></label>
+                                            <input type="url" name="youtube_url" value="{{old('youtube_url')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the Youtube URL">
                                             <span class="text-danger">@error('youtube_url'){{ "$message" }}@enderror</span>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="basic-url">Creator/Content Maker:</label>
-                                            <input type="name" name="name" value="{{old('name')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Creator/Content Maker Here">
+                                            <input type="name" name="name" value="{{old('name')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Creator/Content Maker">
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="basic-url">Brief Description </label>
-                                            <input type="text" name="description" class="form-control" aria-describedby="basic-addon3" placeholder="Brief Description of the video here">
+                                    </div>
+                                    <div class="form-row mb-4">
+                                        <div class="form-group col-lg-12">
+                                            <label for="basic-url">Video Description </label>
+                                            <textarea name="description" class="form-control" id="" cols="30" rows="10" placeholder="Describe the video here"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-6">
                                             <div class="widget-content widget-content-area">
                                                 <div class="custom-file-container" data-upload-id="myFirstImage">
-                                                    <label>Choose a Featured Image  <span style="color: red;">*</span> <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                                                    <label>Choose a Featured Image <span style="color: red;">*</span> <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
                                                     <label class="custom-file-container__custom-file">
                                                         <input type="file" name="image" class="custom-file-container__custom-file__custom-file-input" accept="image/*">
                                                         <span class="text-danger">@error('image'){{ "$message" }}@enderror</span>
@@ -150,8 +151,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-lg-6">
-                                        <button type="submit" class="btn btn-lg btn-secondary">Upload Youtube Content Now</button>
+                                    <div class="form-row mb-4">
+                                        <div class="form-group col-lg-12">
+                                            <button type="submit" class="btn btn-lg btn-secondary float-right">Upload Youtube Content Now</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

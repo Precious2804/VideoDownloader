@@ -71,18 +71,17 @@
 
 <!--  BEGIN MAIN CONTAINER  -->
 <div class="main-container" id="container">
+    <div class="overlay"></div>
+    <div class="search-overlay"></div>
+
+    <!--  BEGIN SIDEBAR  -->
+    @include('/partials/sidebar')
+    <!--  END SIDEBAR  -->
     <!--  BEGIN CONTENT AREA  -->
     <div id="content" class="main-content">
         <div class="layout-px-spacing">
 
             <div class="row layout-top-spacing">
-
-                <div class="overlay"></div>
-                <div class="search-overlay"></div>
-
-                <!--  BEGIN SIDEBAR  -->
-                @include('/partials/sidebar')
-                <!--  END SIDEBAR  -->
 
                 <div id="card_4" class="col-lg-12 layout-spacing">
                     <div class="statbox widget box box-shadow">
@@ -110,28 +109,30 @@
                                             <span class="text-danger">@error('title'){{ "$message" }}@enderror</span>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="inputPassword4">Select FIle Type <span style="color: red;">*</span></label>
-                                            <input type="text" name="type" class="form-control" value="{{old('type')}}" id="inputEmail4" placeholder="Enter File Type Here">
+                                            <label for="inputPassword4">Select FIle Type (e.g. MP3) <span style="color: red;">*</span></label>
+                                            <input type="text" name="type" class="form-control" value="{{old('type')}}" id="inputEmail4" placeholder="Enter File Type">
                                             <span class="text-danger">@error('type'){{ "$message" }}@enderror</span>
                                         </div>
                                     </div>
                                     <div class="form-row mb-4">
                                         <div class="form-group col-md-6">
-                                            <label for="inputEmail4">File Size Here</label>
-                                            <input type="text" name="size" class="form-control" value="{{old('size')}}" id="inputEmail4" placeholder="Enter File Size Here">
+                                            <label for="inputEmail4">File Size</label>
+                                            <input type="text" name="size" class="form-control" value="{{old('size')}}" id="inputEmail4" placeholder="Enter File Size">
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="basic-url">Audio URL Here <span style="color: red;">*</span></label>
-                                            <input type="url" name="audio_url" value="{{old('audio_url')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the Audio URL here">
+                                            <label for="basic-url">Audio URL <span style="color: red;">*</span></label>
+                                            <input type="url" name="audio_url" value="{{old('audio_url')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the Audio URL">
                                             <span class="text-danger">@error('audio_url'){{ "$message" }}@enderror</span>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="basic-url">Song By:</label>
-                                            <input type="name" name="name" value="{{old('name')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Song maker/author here">
+                                            <input type="name" name="name" value="{{old('name')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Song maker/author">
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="basic-url">Brief Description </label>
-                                            <input type="text" name="description" class="form-control" aria-describedby="basic-addon3" placeholder="Brief Description of the video here">
+                                    </div>
+                                    <div class="form-row mb-4">
+                                        <div class="form-group col-lg-12">
+                                            <label for="basic-url">Video Description </label>
+                                            <textarea name="description" class="form-control" id="" cols="30" rows="10" placeholder="Describe the video"></textarea>
                                         </div>
                                     </div>
                                     <div class="form-row mb-4">
@@ -150,8 +151,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-lg-6">
-                                        <button type="submit" class="btn btn-lg btn-secondary">Upload Audio Now</button>
+                                    <div class="form-row mb-4">
+                                        <div class="form-group col-lg-12">
+                                            <button type="submit" class="btn btn-lg btn-secondary float-right">Upload Audio Now</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

@@ -1,0 +1,81 @@
+.modalz{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000a8;
+    display: none;
+    transition: ease-in-out 1s;
+}
+
+.modalz-card{
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    width: 300px;
+    transform: translate(-50%, -50%);
+
+}
+
+.modalz-title{
+    text-align: left;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 15px 10px;
+    color: #fff;
+    background: #000000a8;
+    font-size: 14px;
+}
+
+.modalz-title .modalz-description{
+    margin-top: 5px;
+    color: #ffffffa8;
+    font-size: 12px;
+}
+
+.modalz-content{
+    position: relative;
+    text-align: center;
+}
+
+.modalz-content img{
+    width: 350px;
+    height: auto;
+}
+
+.modalz-footer button{
+    padding: 15px 20px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    color: #fff;
+    width: 100%;
+    margin-top: 5px;
+    margin-left: -1px;
+    background: #000000;
+    cursor: pointer;
+}
+
+.modalz-footer button:hover{
+    color: #fff;
+    text-align: center;
+    background: #000000;
+}
+
+.modalz-close{
+    background: #ff5a00;
+    font-weight: bold;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    border: 4px solid #fff;
+    padding: 5px 8px 3px 9px;
+    position: absolute;
+    top: -50px;
+    right: -35px;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+}

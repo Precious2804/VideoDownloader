@@ -20,10 +20,15 @@ Route::get('/', function () {
 
 Route::post('do-login', [MainController::class, 'doLogin'])->name('do-login');
 Route::get('/download-video/{unique_id}', [MainController::class, 'downloadVideo'])->name('download-video');
+Route::get('/download', [MainController::class, 'getDownload'])->name('download');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('dashboard', [MainController::class, 'dashboard'])->name('dashboard');
     Route::get('upload-video', [MainController::class, 'uploadVideo'])->name('upload-video');
+    Route::get('all-video', [MainController::class, 'allVideo'])->name('all-video');
+    Route::get('all-youtube', [MainController::class, 'allYoutube'])->name('all-youtube');
+    Route::get('all-utorrent', [MainController::class, 'allUtorrent'])->name('all-utorrent');
+    Route::get('all-audio', [MainController::class, 'allAudio'])->name('all-audio');
     Route::get('logout', [MainController::class, 'logout'])->name('logout');
     Route::post('do_upload_video', [MainController::class, 'doUploadVideo'])->name('do_upload_video');
     Route::get('upload-audio', [MainController::class, 'uploadAudio'])->name('upload-audio');
@@ -36,5 +41,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('do-upload-youtube', [MainController::class, 'doUploadYoutube'])->name('do-upload-youtube');
     Route::get('upload-utorrent', [MainController::class, 'uploadUtorrent'])->name('upload-utorrent');
     Route::post('do-upload-utorrent', [MainController::class, 'doUploadUtorrent'])->name('do-upload-utorrent');
+    Route::get('create-admin', [MainController::class, 'createAdmin'])->name('create-admin');
+    Route::get('profile', [MainController::class, 'profile'])->name('profile');
+    Route::get('page-settings', [MainController::class, 'pageSettings'])->name('page-settings');
+    Route::post('do_create_admin', [MainController::class, 'doCreateAdmin'])->name('do_create_admin');
+    Route::post('do_edit_profile', [MainController::class, 'doEditProfile'])->name('do_edit_profile');
+    Route::post('change_password', [MainController::class, 'changePassword'])->name('change_password');
 
 });

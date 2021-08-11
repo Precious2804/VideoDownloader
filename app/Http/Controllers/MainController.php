@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\VideosTable;
+use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\Generics;
-
+use Illuminate\Support\Facades\Hash;
 
 class MainController extends Controller
 {
@@ -22,6 +23,7 @@ class MainController extends Controller
             if (Auth::validate($credentials) == true) {
                 Auth::attempt($credentials, $req->remember_me == 'on' ? true : false);
 
+                $user = Auth::user();
                 return redirect()->to(route('dashboard'));
             } else {
                 return redirect()->back()->with('info', 'Incorrect password!, please check your credentials and try again.')->withInput($req->only('loginEmail'));
@@ -40,16 +42,16 @@ class MainController extends Controller
 
     public function dashboard()
     {
-        $lastVideo = ['lastVideo'=>VideosTable::where('video_type', "Video")->orderBy('created_at', 'desc')->first()];
-        $lastAudio = ['lastAudio'=>VideosTable::where('video_type', "Audio")->orderBy('created_at', 'desc')->first()];
-        $lastYoutube = ['lastYoutube'=>VideosTable::where('video_type', "Youtube")->orderBy('created_at', 'desc')->first()];
-        $lastUtorrent = ['lastUtorrent'=>VideosTable::where('video_type', "UTorrent")->orderBy('created_at', 'desc')->first()];
+        $lastVideo = ['lastVideo' => VideosTable::where('video_type', "Video")->orderBy('created_at', 'desc')->first()];
+        $lastAudio = ['lastAudio' => VideosTable::where('video_type', "Audio")->orderBy('created_at', 'desc')->first()];
+        $lastYoutube = ['lastYoutube' => VideosTable::where('video_type', "Youtube")->orderBy('created_at', 'desc')->first()];
+        $lastUtorrent = ['lastUtorrent' => VideosTable::where('video_type', "UTorrent")->orderBy('created_at', 'desc')->first()];
         $allUploads = ['allUploads' => VideosTable::latest()->take(5)->get()];
         return view('dashboard')->with($lastVideo)
-                                ->with($lastAudio)
-                                ->with($lastYoutube)
-                                ->with($lastUtorrent)
-                                ->with($allUploads);
+            ->with($lastAudio)
+            ->with($lastYoutube)
+            ->with($lastUtorrent)
+            ->with($allUploads);
     }
 
     public function uploadVideo()
@@ -59,13 +61,10 @@ class MainController extends Controller
 
     public function doUploadVideo(Request $req)
     {
-        $validateSUb = $req->validate([
-            'subtitle' => 'url'
-        ]);
         $upload = 'video_url';
         $url = $req->video_url;
         $video_type = "Video";
-        return $this->insertIntoVideosTable($req, $upload, $url, $video_type)->with($validateSUb);
+        return $this->insertIntoVideosTable($req, $upload, $url, $video_type);
     }
 
 
@@ -101,30 +100,30 @@ class MainController extends Controller
             'subtitle' => 'url',
             'image' => 'mimes:png,jpg,jpeg,gif,svg'
         ]);
-        $selectUpload = VideosTable::where ('unique_id', $req->unique_id)->first();
+        $selectUpload = VideosTable::where('unique_id', $req->unique_id)->first();
         if ($req->file()) {
             $name = time() . '_' . $req->image->getClientOriginalName();
             $filePath = $req->file('image')->storeAs('video_images', $name, 'public');
             $locationImage = '/storage/' . $filePath;
-        }
-        else{
+        } else {
             $locationImage = $selectUpload['image'];
         }
 
         $selectUpload->update([
-            'title'=>$req->title,
-            'type'=>$req->type,
-            'name'=>$req->name,
-            'size'=>$req->size,
-            'url'=>$req->url,
-            'subtitle'=>$req->subtitle,
-            'description'=>$req->description,
-            'image'=>$req->image = $locationImage
+            'title' => $req->title,
+            'type' => $req->type,
+            'name' => $req->name,
+            'size' => $req->size,
+            'url' => $req->url,
+            'subtitle' => $req->subtitle,
+            'description' => $req->description,
+            'image' => $req->image = $locationImage
         ]);
         return back()->with('updated', "This file has been updated successfully");
     }
 
-    public function delete($unique_id){
+    public function delete($unique_id)
+    {
         $selectID = VideosTable::where('unique_id', $unique_id)->first();
         $selectID->delete();
 
@@ -157,8 +156,99 @@ class MainController extends Controller
         return $this->insertIntoVideosTable($req, $upload, $url, $video_type);
     }
 
-    public function downloadVideo($unique_id){
-        $video = ['video'=>VideosTable::where('unique_id', $unique_id)->first()];
+    public function downloadVideo($unique_id)
+    {
+        $video = ['video' => VideosTable::where('unique_id', $unique_id)->first()];
         return view('download-video')->with($video);
+    }
+
+    public function allVideo()
+    {
+        $allVideos = ['allVideos' => VideosTable::where('video_type', "Video")->get()];
+        return view('all-video', $allVideos);
+    }
+    public function allYoutube()
+    {
+        $allYoutubes = ['allYoutubes' => VideosTable::where('video_type', "Youtube")->get()];
+        return view('all-youtube', $allYoutubes);
+    }
+    public function allUtorrent()
+    {
+        $allUtorrents = ['allUtorrents' => VideosTable::where('video_type', "UTorrent")->get()];
+        return view('all-utorrent', $allUtorrents);
+    }
+    public function allAudio()
+    {
+        $allAudios = ['allAudios' => VideosTable::where('video_type', "Audio")->get()];
+        return view('all-audio', $allAudios);
+    }
+    public function createAdmin()
+    {
+        return view('create-admin');
+    }
+    public function doCreateAdmin(Request $req)
+    {
+        $req->validate([
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'user_type' => 'required',
+            'password' => 'required|confirmed'
+        ]);
+        $unique_id = $this->generateId();
+
+        User::create([
+            'unique_id' => $unique_id,
+            'name' => $req->name,
+            'email' => $req->email,
+            'phone' => $req->phone,
+            'isAdmin' => "1",
+            'user_type' => $req->user_type,
+            'password' => Hash::make($req->password)
+        ]);
+        return back()->with('success', $req->user_type . " was created Successfully");
+    }
+
+    public function profile()
+    {
+        $user =['user'=>Auth::user()];
+        return view('profile', $user);
+    }
+
+    public function doEditProfile(Request $req){
+        $req->validate([
+            'image' => 'mimes:png,jpg,jpeg,gif,svg'
+        ]);
+
+        $user = User::where('unique_id', Auth::user()->unique_id)->first();
+        if ($req->file()) {
+            $name = time() . '_' . $req->image->getClientOriginalName();
+            $filePath = $req->file('image')->storeAs('profile_pics', $name, 'public');
+            $locationImage = '/storage/' . $filePath;
+        } else {
+            $locationImage = $user['image'];
+        }
+
+        $user->update([
+            'name'=>$req->name,
+            'email'=>$req->email,
+            'phone'=>$req->phone,
+            'image' => $req->image = $locationImage
+        ]);
+        return back()->with('success', "Profile Changed successfully");
+    }
+    public function changePassword(Request $req){
+        $user = User::where('unique_id', Auth::user()->unique_id)->first();
+        $req->validate([
+            'old_password'=>'required', new MatchOldPassword,
+            'password'=>'required|confirmed'
+        ]);
+        $user->update([
+            'password'=>Hash::make($req->password)
+        ]);
+        return back()->with('pass_update', "Password has been successfully changed");
+    }
+
+    public function pageSettings(){
+        return view('page-settings');
     }
 }

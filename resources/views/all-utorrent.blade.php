@@ -86,7 +86,7 @@
 
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                     <div class="widget-content widget-content-area br-6">
-                        <h5 style="color: #009688; font-weight: 700; font-size: 13px;border: none;letter-spacing: 1px;text-transform: uppercase;">All Video and Audio Contents</h5>
+                        <h5 style="color: #009688; font-weight: 700; font-size: 13px;border: none;letter-spacing: 1px;text-transform: uppercase;">All Video Contents</h5>
                         @if(Session::get('deleted'))
                         <div class="alert alert-success">
                             {{Session::get('deleted')}}
@@ -96,7 +96,6 @@
                             <table id="" class="table table-hover non-hover" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
                                         <th>Title</th>
                                         <th>File Type</th>
                                         <th>Produced By</th>
@@ -106,9 +105,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($allUploads as $item)
+                                    @foreach($allUtorrents as $item)
                                     <tr>
-                                        <td>{{$item->id}}</td>
                                         <td>{{$item->title}}</td>
                                         <td>{{$item->type}}</td>
                                         <td>{{$item->name}}</td>
