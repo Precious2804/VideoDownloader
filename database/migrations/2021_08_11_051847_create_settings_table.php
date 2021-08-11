@@ -15,6 +15,7 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
+            $table->string('isAdmin')->default(1)->nullable();
             $table->string('whatsapp_promotion')->nullable();
             $table->string('telegram_promotion')->nullable();
             $table->string('facebook')->nullable();

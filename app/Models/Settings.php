@@ -17,6 +17,7 @@ class Settings extends Model
         'email',
         'telegram',
         'uploader_note',
-        'footer_note'
+        'footer_note',
+        'isAdmin'
     ];
 }

@@ -124,10 +124,6 @@
                                             <input type="url" name="youtube_url" value="{{old('youtube_url')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the Youtube URL">
                                             <span class="text-danger">@error('youtube_url'){{ "$message" }}@enderror</span>
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="basic-url">Creator/Content Maker:</label>
-                                            <input type="name" name="name" value="{{old('name')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Creator/Content Maker">
-                                        </div>
                                     </div>
                                     <div class="form-row mb-4">
                                         <div class="form-group col-lg-12">

@@ -33,8 +33,31 @@ trait Generics
             $upload => 'required|url',
             'image' => 'mimes:png,jpg,jpeg,gif,svg'
         ]);
+        if($req->file('video')){
+            $name = time() . '_' . $req->image->getClientOriginalName();
+            $filePath = $req->file('image')->storeAs('video_images', $name, 'public');
 
-        if ($req->file()) {
+            $video_name = time() . '_' . $req->video->getClientOriginalName();
+            $videoPath = $req->file('video')->storeAs('videos', $video_name, 'public');
+
+            $unique_id = $this->generateId();
+            $result = VideosTable::create([
+                'unique_id' => $unique_id,
+                'title' => $req->title,
+                'type' => $req->type,
+                'size' => $req->size,
+                'video_type'=>$video_type,
+                'url' => $url,
+                'subtitle' => $req->subtitle,
+                'description' => $req->description,
+                'image'=>$req->image = '/storage/' . $filePath,
+                'video'=>$req->video = '/storage/' . $videoPath
+            ]);
+            if($result){
+                return back()->with('success', "The File Upload was Successfully Completed!!!");
+            }        
+        } 
+        elseif($req->file('image')){
             $name = time() . '_' . $req->image->getClientOriginalName();
             $filePath = $req->file('image')->storeAs('video_images', $name, 'public');
 
@@ -43,7 +66,6 @@ trait Generics
                 'unique_id' => $unique_id,
                 'title' => $req->title,
                 'type' => $req->type,
-                'name'=>$req->name,
                 'size' => $req->size,
                 'video_type'=>$video_type,
                 'url' => $url,

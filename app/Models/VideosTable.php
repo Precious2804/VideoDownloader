@@ -13,13 +13,13 @@ class VideosTable extends Model
         'unique_id',
         'title',
         'type',
-        'name',
         'size',
         'video_type',
         'url',
         'subtitle',
         'description',
-        'image'
+        'image',
+        'video'
     ];
 
     public $incrementing = false;

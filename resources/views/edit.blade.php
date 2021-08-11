@@ -97,9 +97,6 @@
                                             File type: <span style="color: #009688;">{{$findUpload['type']}}</span>
                                         </li>
                                         <li class="contacts-block__item">
-                                            Producer/Artiste: <span style="color: #009688;">{{$findUpload['name']}}</span>
-                                        </li>
-                                        <li class="contacts-block__item">
                                             File Size: <span style="color: #009688;">{{$findUpload['size']}}</span>
                                         </li>
                                         <li class="contacts-block__item">
@@ -126,8 +123,8 @@
                 <div class="col-xl-8 col-lg-6 col-md-7 col-sm-12 layout-top-spacing">
 
                     <div class="skills layout-spacing ">
+                        <h3 class="">Edit details</h3>
                         <div class="widget-content widget-content-area">
-                            <h3 class="">Edit details</h3>
                             @if(Session::get('updated'))
                             <div class="alert alert-success">
                                 {{Session::get('updated')}}
@@ -173,10 +170,6 @@
                                         <input type="text" name="description" value="{{$findUpload['description']}}" class="form-control" aria-describedby="basic-addon3">
                                     </div>
                                     @endif
-                                    <div class="form-group col-md-6">
-                                        <label for="basic-url">Produced by:</label>
-                                        <input type="name" name="name" value="{{$findUpload['name']}}" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                                    </div>
                                 </div>
                                 <div class="form-row mb-4">
                                     <div class="form-group col-md-6">
@@ -193,7 +186,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-lg-6">
+
+                                </div>
+                                <div class="form-row mb-4">
+                                    <div class="form-group col-lg-12">
                                         <button type="submit" class="btn btn-lg btn-secondary float-right">Edit Now</button>
                                     </div>
                                 </div>

@@ -19,7 +19,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::post('do-login', [MainController::class, 'doLogin'])->name('do-login');
-Route::get('/download-video/{unique_id}', [MainController::class, 'downloadVideo'])->name('download-video');
+Route::get('/download/{unique_id}', [MainController::class, 'downloadVideo'])->name('download');
 Route::get('/download', [MainController::class, 'getDownload'])->name('download');
 
 Route::group(['middleware' => ['auth']], function () {
@@ -47,5 +47,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('do_create_admin', [MainController::class, 'doCreateAdmin'])->name('do_create_admin');
     Route::post('do_edit_profile', [MainController::class, 'doEditProfile'])->name('do_edit_profile');
     Route::post('change_password', [MainController::class, 'changePassword'])->name('change_password');
+    Route::post('add_socials', [MainController::class, 'addSocials'])->name('add_socials');
+    Route::post('uploader_note', [MainController::class, 'uploaderNote'])->name('uploader_note');
+    Route::post('footer_upload', [MainController::class, 'footerUpload'])->name('footer_upload');
 
 });

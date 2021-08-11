@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Settings;
 use App\Models\User;
 use App\Models\VideosTable;
 use App\Rules\MatchOldPassword;
@@ -61,6 +62,10 @@ class MainController extends Controller
 
     public function doUploadVideo(Request $req)
     {
+        $req->validate([
+            'video'=>'mimes:mpeg,ogg,mp4,webm,3gp,mov,flv,avi,wmv,ts|max:102400'
+        ]);
+
         $upload = 'video_url';
         $url = $req->video_url;
         $video_type = "Video";
@@ -158,8 +163,11 @@ class MainController extends Controller
 
     public function downloadVideo($unique_id)
     {
+        $fromSettings = ['fromSettings'=>Settings::where('isAdmin', '1')->first()];
         $video = ['video' => VideosTable::where('unique_id', $unique_id)->first()];
-        return view('download-video')->with($video);
+        return view('download')
+                                    ->with($fromSettings)
+                                    ->with($video);
     }
 
     public function allVideo()
@@ -210,11 +218,12 @@ class MainController extends Controller
 
     public function profile()
     {
-        $user =['user'=>Auth::user()];
+        $user = ['user' => Auth::user()];
         return view('profile', $user);
     }
 
-    public function doEditProfile(Request $req){
+    public function doEditProfile(Request $req)
+    {
         $req->validate([
             'image' => 'mimes:png,jpg,jpeg,gif,svg'
         ]);
@@ -229,26 +238,61 @@ class MainController extends Controller
         }
 
         $user->update([
-            'name'=>$req->name,
-            'email'=>$req->email,
-            'phone'=>$req->phone,
+            'name' => $req->name,
+            'email' => $req->email,
+            'phone' => $req->phone,
             'image' => $req->image = $locationImage
         ]);
         return back()->with('success', "Profile Changed successfully");
     }
-    public function changePassword(Request $req){
+    public function changePassword(Request $req)
+    {
         $user = User::where('unique_id', Auth::user()->unique_id)->first();
         $req->validate([
-            'old_password'=>'required', new MatchOldPassword,
-            'password'=>'required|confirmed'
+            'old_password' => 'required', new MatchOldPassword,
+            'password' => 'required|confirmed'
         ]);
         $user->update([
-            'password'=>Hash::make($req->password)
+            'password' => Hash::make($req->password)
         ]);
         return back()->with('pass_update', "Password has been successfully changed");
     }
 
-    public function pageSettings(){
-        return view('page-settings');
+    public function pageSettings()
+    {
+        $setting = ['setting' => Settings::where('isAdmin', '1')->first()];
+        return view('page-settings')->with($setting);
+    }
+    public function addSocials(Request $req)
+    {
+        $prev_setting = Settings::where('isAdmin', '1')->first();
+        $prev_setting->update([
+            'whatsapp_promotion' => $req->whatsapp_promotion,
+            'telegram_promotion' => $req->telegram_promotion,
+            'facebook' => $req->facebook,
+            'whatsapp' => $req->whatsapp,
+            'instagram' => $req->instagram,
+            'email' => $req->email,
+            'telegram' => $req->telegram
+        ]);
+        return back()->with('success', "Settings changed Successfully");
+    }
+    public function uploaderNote(Request $req)
+    {
+        $prev_setting = Settings::where('isAdmin', '1')->first();
+        $prev_setting->update([
+            'uploader_note'=>$req->uploader_note
+        ]);
+
+        return back()->with('done', "Uploader note changes was effected successfully");
+    }
+    public function footerUpload(Request $req)
+    {
+        $prev_setting = Settings::where('isAdmin', '1')->first();
+        $prev_setting->update([
+            'footer_note'=>$req->footer_note
+        ]);
+
+        return back()->with('footer_change', "Footer note changes was effected successfully");
     }
 }

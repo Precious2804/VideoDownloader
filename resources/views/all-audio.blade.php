@@ -95,7 +95,6 @@
                                     <tr>
                                         <th>Title</th>
                                         <th>File Type</th>
-                                        <th>Produced By</th>
                                         <th>Category</th>
                                         <th>Date</th>
                                         <th>Action</th>
@@ -106,12 +105,11 @@
                                     <tr>
                                         <td>{{$item->title}}</td>
                                         <td>{{$item->type}}</td>
-                                        <td>{{$item->name}}</td>
                                         <td>{{$item->video_type}}</td>
                                         <td>{{$item->created_at}}</td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="/download-video/{{$item['unique_id']}}" target="_blank">
+                                                <a href="/download/{{$item['unique_id']}}" target="_blank">
                                                     <button type="button" class="btn btn-dark btn-sm">Open</button>
                                                 </a>
                                                 <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">

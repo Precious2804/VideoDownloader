@@ -89,7 +89,7 @@
                                 <div class="w-content">
                                     <span class="w-value">Video Upload</span> <br>
                                     <span class="w-numeric-title">Most recent Video Upload.</span> <br>
-                                    <span class="w-numeric-title">Title: <a href="/download-video/{{$lastVideo['unique_id']}}" target="_blank" style="color: #009688;">{{$lastVideo['title']}}</a></span>
+                                    <span class="w-numeric-title">Title: <a href="/download/{{$lastVideo['unique_id']}}" target="_blank" style="color: #009688;">{{$lastVideo['title']}}</a></span>
                                 </div>
                             </div>
 
@@ -103,7 +103,7 @@
                                 <div class="w-content">
                                     <span class="w-value">Youtube Video</span> <br>
                                     <span class="w-numeric-title">Most Recent Youtube Video.</span> <br>
-                                    <span class="w-numeric-title">Title: <a href="/download-video/{{$lastYoutube['unique_id']}}" target="_blank" style="color: #009688;">{{$lastYoutube['title']}}</a></span>
+                                    <span class="w-numeric-title">Title: <a href="/download/{{$lastYoutube['unique_id']}}" target="_blank" style="color: #009688;">{{$lastYoutube['title']}}</a></span>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                                 <div class="w-content">
                                     <span class="w-value">Utorrent Video</span> <br>
                                     <span class="w-numeric-title">Most recent Utorrent Upload.</span> <br>
-                                    <span class="w-numeric-title">Title: <a href="/download-video/{{$lastUtorrent['unique_id']}}" target="_blank" style="color: #009688;">{{$lastUtorrent['title']}}</a></span>
+                                    <span class="w-numeric-title">Title: <a href="/download/{{$lastUtorrent['unique_id']}}" target="_blank" style="color: #009688;">{{$lastUtorrent['title']}}</a></span>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +129,7 @@
                                 <div class="w-content">
                                     <span class="w-value">Audio Upload</span> <br>
                                     <span class="w-numeric-title">Most recent Audio upload.</span> <br>
-                                    <span class="w-numeric-title">Title: <a href="/download-video/{{$lastAudio['unique_id']}}" target="_blank" style="color: #009688;">{{$lastAudio['title']}}</a></span>
+                                    <span class="w-numeric-title">Title: <a href="/download/{{$lastAudio['unique_id']}}" target="_blank" style="color: #009688;">{{$lastAudio['title']}}</a></span>
                                 </div>
                             </div>
                         </div>

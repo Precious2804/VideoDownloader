@@ -85,42 +85,57 @@
                     <div class="skills layout-spacing ">
                         <h3>Admin Settings</h3>
                         <div class="widget-content widget-content-area">
-                            <form method="POST" action="#">
+                        @if(Session::get('success'))
+                        <div class="alert alert-success">
+                            {{Session::get('success')}}
+                        </div>
+                        @endif
+                        @if(Session::get('done'))
+                        <div class="alert alert-success">
+                            {{Session::get('done')}}
+                        </div>
+                        @endif
+                        @if(Session::get('footer_change'))
+                        <div class="alert alert-success">
+                            {{Session::get('footer_change')}}
+                        </div>
+                        @endif
+                            <form method="POST" action="{{route('add_socials')}}">
                                 @csrf
                                 <div class="form-row mb-4">
                                     <div class="form-group col-lg-6">
                                         <label for="inputEmail4">Whatsapp Promotion Link</label>
-                                        <input type="text" name="whatsapp_promotion" class="form-control" id="inputEmail4">
+                                        <input type="text" name="whatsapp_promotion" value="{{$setting['whatsapp_promotion']}}" class="form-control" id="inputEmail4">
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="inputEmail4">Telegram Promotion Link</label>
-                                        <input type="text" name="telegram_promotion" class="form-control" id="inputEmail4">
+                                        <input type="text" name="telegram_promotion" value="{{$setting['telegram_promotion']}}" class="form-control" id="inputEmail4">
                                     </div>
                                 </div>
                                 <div class="form-row mb-4">
                                     <div class="form-group col-lg-6">
                                         <label for="inputEmail4">Facebook Link</label>
-                                        <input type="text" name="facebook" class="form-control" id="inputEmail4">
+                                        <input type="text" name="facebook" value="{{$setting['facebook']}}" class="form-control" id="inputEmail4">
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="inputEmail4">WhatsApp Link</label>
-                                        <input type="text" name="whatsapp" class="form-control" id="inputEmail4">
+                                        <input type="text" name="whatsapp" value="{{$setting['whatsapp']}}" class="form-control" id="inputEmail4">
                                     </div>
                                 </div>
                                 <div class="form-row mb-4">
                                     <div class="form-group col-lg-6">
                                         <label for="inputEmail4">Instagram Link</label>
-                                        <input type="text" name="instagram" class="form-control" id="inputEmail4">
+                                        <input type="text" name="instagram" value="{{$setting['instagram']}}" class="form-control" id="inputEmail4">
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="inputEmail4">Email</label>
-                                        <input type="text" name="email" class="form-control" id="inputEmail4">
+                                        <input type="text" name="email" value="{{$setting['email']}}" class="form-control" id="inputEmail4">
                                     </div>
                                 </div>
                                 <div class="form-row mb-4">
                                     <div class="form-group col-lg-6">
                                         <label for="inputEmail4">Telegram</label>
-                                        <input type="text" name="telegram" class="form-control" id="inputEmail4">
+                                        <input type="text" name="telegram" value="{{$setting['telegram']}}" class="form-control" id="inputEmail4">
                                     </div>
                                 </div>
                                 <div class="form-group col-lg-12">
@@ -134,12 +149,12 @@
                     <div class="skills layout-spacing ">
                         <h3>Uploader's Note:</h3>
                         <div class="widget-content widget-content-area">
-                            <form action="" method="POST">
+                            <form action="{{route('uploader_note')}}" method="POST">
                                 @csrf
                                 <div class="form-row mb-4">
                                     <div class="form-group col-lg-12">
                                         <label for="">Uploader's Note</label>
-                                        <textarea name="uploader_note" id="" cols="30" placeholder="Write Uploader's note here" rows="10" class="form-control"></textarea>
+                                        <textarea name="uploader_note" id="" cols="30" placeholder="Write Uploader's note here" rows="10" class="form-control">{{$setting['uploader_note']}}</textarea>
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <button type="submit" class="btn btn-lg btn-secondary">Submit Now</button>
@@ -153,58 +168,13 @@
                     <div class="skills layout-spacing ">
                         <h3>Footer Note:</h3>
                         <div class="widget-content widget-content-area">
-                            <form action="" method="POST">
+                            <form action="{{route('footer_upload')}}" method="POST">
                                 @csrf
                                 <div class="form-row mb-4">
                                     <div class="form-group col-lg-12">
                                         <label for="">Footer Note</label>
                                         <textarea name="footer_note" id="" cols="30" rows="10" class="form-control">
-                                        <footer class="page-footer text-center text-md-left font-small indigo pt-4 mt-4">
-                                            <div class="container-fluid text-center text-md-left">
-                                                <div class="row">
-                                                    <div class="coll-md-6 pb-3">
-                                                        <div class="text-center"> <strong>
-                                                                <h3 class="title mb-3">Meetdownload Service</h3>
-                                                            </strong></div>
-                                                        <hr />
-                                                        <p>
-                                                            <b>Meetdownload</b> is a service that grabs and serves downloads of files around the
-                                                            internet (public domain).
-                                                            If you experience an issue with this page, kindly email <b><a
-                                                                    href="https://meetdownload.com/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                                    data-cfemail="b9cbdcc9d6cbcdcaf9d4dcdccdddd6ced7d5d6d8dd97dad6d4">[email&#160;protected]</a></b>
-                                                            we will try to fix it.
-                                                        </p>
-                                                        <br />
-                                                        <p>
-                                                            if you find any infringing files of yours on our service, contact us immediately <b><a
-                                                                    href="https://meetdownload.com/cdn-cgi/l/email-protection" class="__cf_email__"
-                                                                    data-cfemail="21454c4240614c444455454e564f4d4e40450f424e4c">[email&#160;protected]</a></b>.
-                                                            While we may disable access to the page, the file may still exist on the internet for
-                                                            download.
-                                                        </p>
-                                                    </div>
-                                                    <div class="coll-md-6 pb-3">
-                                                        <div class="text-center"> <strong>
-                                                                <h3 class="title mb-3">Vital Pages</h3>
-                                                            </strong></div>
-                                                        <hr />
-                                                        <ul class="list-unstyled">
-                                                            <li>
-                                                                🔥 <a href="https://movies.meetdownload.com/">Latest Movies 2020</a>
-                                                            </li>
-                                                            <br />
-                                                            <li>
-                                                                🔥 <a href="http://dlmovies.waploaded.ng/">Download Youtube Movies</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="footer-copyright py-3 text-center">
-                                                Copyright © 2020 Meetdownload Service. All right reserved.
-                                            </div>
-                                        </footer>
+                                            {{$setting['footer_note']}}
                                         </textarea>
                                     </div>
                                     <div class="form-group col-lg-12">

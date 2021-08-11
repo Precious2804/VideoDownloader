@@ -1,109 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{URL::asset('style.css')}}">
-    <link href="{{URL::asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{URL::asset('plugins/font-icons/fontawesome/css/regular.css')}}">
-    <link rel="stylesheet" href="{{URL::asset('plugins/font-icons/fontawesome/css/fontawesome.css')}}">
-    <title>Download Now</title>
-</head>
-
-<body style="background-color: #101933;">
-
-    <div class="container">
-        <div id="demo" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="card">
-                        <div class="path" style="text-transform: uppercase; font-size: 20px; font-weight:bold">Download Content HERE</div>
-                        <div class="row">
-                            <div class="col-md-6 text-center align-self-center"> <img class="img-fluid" src="{{$video['image']}}"> </div>
-                            <div class="col-md-6 info">
-                                <div class="row title">
-                                    <div class="col">
-                                        <span class="text-info">Title: </span>
-                                        <h2 class="text-secondary"> {{$video['title']}} </h2>
-                                    </div>
-                                </div>
-                                <div class="row title">
-                                    <div class="col">
-                                        <span class="text-info">Description:</span>
-                                        <p class="text-secondary">{{$video['description']}}</p>
-                                    </div>
-                                </div>
-                                <div class="row price" > <label class="radio"> <input type="radio" name="size1" value="small" checked> <span>
-                                            <div class="row"><big><b>File Type</b></big></div>
-                                            <div class="row">{{$video['type']}}</div></a>
-                                        </span> </label> <label class="radio"> <input type="radio" name="size1" value="large"> <span>
-                                            <div class="row"><big><b>File Size</b></big></div>
-                                            <div class="row">{{$video['size']}}</div></a>
-                                        </span> </label> 
-                                </div>
-                                <div class="row title">
-                                    <div class="col">
-                                        @if($video['video_type'] == "Video")
-                                        <span class="text-info">Produced by: </span>
-                                        @endif                                        
-                                        @if($video['video_type'] == "UTorrent")
-                                        <span class="text-info">Produced by: </span>
-                                        @endif                                        
-                                        @if($video['video_type'] == "Youtube")
-                                        <span class="text-info">Created by: </span>
-                                        @endif                                        
-                                        @if($video['video_type'] == "Audio")
-                                        <span class="text-info">Song by: </span>
-                                        @endif                                        
-                                        <p class="text-secondary">{{$video['name']}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row lower">
-                        @if($video['video_type'] == "Video")
-                            @if($video['subtitle'])
-                                <div class="col text-left align-self-center"> <a href="/download"><button class="btn btn btn-success">Download Subtitle</button></a> </div>
-                            @endif
-                        @endif    
-                        @if($video['video_type'] == "Audio")
-                            <div class="col text-right align-self-center"> <a href="/download"><button class="btn btn-lg btn-success active">Download Audio Now</button></a> </div>
-                        @else
-                            <div class="col text-right align-self-center"> <a href="/download"><button class="btn btn-lg btn-success active">Download Video Now</button></a> </div>
-                        @endif
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
-
-</html>
-
-
-
-
-
-
-<!-- {{$video['title']}} <br>
-{{$video['type']}} <br>
-{{$video['name']}} <br>
-{{$video['size']}} <br>
-{{$video['video_type']}} <br>
-{{$video['url']}} <br>
-{{$video['subtitle']}} <br>
-{{$video['description']}} <br>
-{{$video['image']}} <br>
-{{$video['created_at']}} <br>
-{{$video['updated_at']}} <br> -->
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
@@ -192,7 +86,7 @@
                 </p>
                 <div class="row">
                     <div class="col-xs-12 col-sm-0 col-md-0 col-lg-4">
-                        <img src="{{URL::asset($video['image'])}}" style="max-width: 100%; width: 100%;" />
+                        <img src="{{URL::asset($video['image'])}}" style="max-width: 100%; width: 100%; height: 500px;" />
                     </div>
                     <div class="col-xs-12 col-md-6 col-lg-8">
                         <div class="panel-block">
@@ -235,8 +129,7 @@
                             </div>
                         </div>
                         <div style="text-align: center; border: 1px solid red; padding: 5px;">
-                            <ion-icon name="warning"></ion-icon> <span style="color: #1abc9c; font-weight: bold"> Uploader's Note:</span> All <strong>Movies</strong> and <strong>Series</strong> must be Watched from the latest version of <strong>VLC Media player</strong> or any advanced player, else it would be
-                            blank video with just sound. <a target="_blank" href="https://wll.pw/v/74490"><strong>Learn How to Fix it</strong></a></a>
+                            <ion-icon name="warning"></ion-icon> <span style="color: #1abc9c; font-weight: bold"> Uploader's Note: </span>{{$fromSettings['uploader_note']}} <a target="_blank" href="https://wll.pw/v/74490"><strong>Learn How to Fix it</strong></a></a>
                         </div>
                         <p id="fastdl"><br /></p>
                         <div class="panel-block">
@@ -257,7 +150,7 @@
                             <br /><br />
                             <div class="panel-block">
                                 <div class="panel-block">
-                                    <a target="_blank" href="https://bit.ly/wapmovie" class="button is-rounded is-success is-medium is-fullwidth mt10">
+                                    <a target="_blank" href="{{$fromSettings['whatsapp_promotion']}}" class="button is-rounded is-success is-medium is-fullwidth mt10">
                                         <span class="icon">
                                             <ion-icon name="logo-whatsapp"></ion-icon>
                                         </span>
@@ -265,7 +158,7 @@
                                     </a>
                                 </div>
                                 <div class="mt20">
-                                    <a target="_blank" href="https://t.me/waploadedmovies" class="button is-rounded is-info is-medium is-fullwidth mt10">
+                                    <a target="_blank" href="{{$fromSettings['telegram_promotion']}}" class="button is-rounded is-info is-medium is-fullwidth mt10">
                                         <span class="icon">
                                             <ion-icon size="medium" name="paper-plane-outline"></ion-icon>
                                         </span>
@@ -286,36 +179,35 @@
                             <div class="panel-block">
                                 <div class="row">
                                     <div class="col-xs-6 col-lg-4">
-                                        <button class="button" data-sharer="facebook" data-width="100%" data-title="Facebook" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
-                                            Facebook </button>
+                                        <a href="{{$fromSettings['facebook']}}">
+                                            <button class="button" data-sharer="facebook" data-width="100%" data-title="Facebook" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
+                                                Facebook </button>
+                                        </a>
                                     </div>
                                     <div class="col-xs-6 col-lg-4">
-                                        <button class="button" data-sharer="twitter" data-width="100%" data-title="Twitter" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
-                                            Twitter </button>
+                                        <a href="{{$fromSettings['whatsapp']}}">
+                                            <button class="button" data-sharer="whatsapp" data-width="100%" data-title="WhatsApp Mobile" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
+                                                WhatsApp Mobile </button>
+                                        </a>
                                     </div>
                                     <div class="col-xs-6 col-lg-4">
-                                        <button class="button" data-sharer="whatsapp" data-width="100%" data-title="WhatsApp Mobile" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
-                                            WhatsApp Mobile </button>
+                                        <a href="{{$fromSettings['whatsapp']}}">
+                                            <button class="button" data-sharer="whatsapp" data-width="100%" data-title="WhatsApp Mobile" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
+                                                WhatsApp Web </button>
+                                        </a>
                                     </div>
                                     <div class="col-xs-6 col-lg-4">
-                                        <button class="button" data-sharer="whatsapp" data-width="100%" data-title="WhatsApp Web" data-url="https://meetdownload.com/1b1c467239834bcaa0571171d53cb9e1/waploaded-392-the-green-knight-2021-hdcam-mp4" data-web>
-                                            WhatsApp Web </button>
+                                        <a href="{{$fromSettings['email']}}">
+                                            <button class="button" data-sharer="email" data-width="100%" data-title="Email" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
+                                                Email </button>
+                                        </a>
                                     </div>
                                     <div class="col-xs-6 col-lg-4">
-                                        <button class="button" data-sharer="email" data-width="100%" data-title="Email" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
-                                            Email </button>
-                                    </div>
-                                    <div class="col-xs-6 col-lg-4">
-                                        <button class="button" data-sharer="telegram" data-width="100%" data-title="Telegram" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
-                                            Telegram </button>
-                                    </div>
-                                    <div class="col-xs-6 col-lg-4">
-                                        <button class="button" data-sharer="linkedin" data-width="100%" data-title="Linkedin" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
-                                            Linkedin </button>
-                                    </div>
-                                    <div class="col-xs-6 col-lg-4">
-                                        <button class="button" data-sharer="pinterest" data-width="100%" data-title="Pinterest" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
-                                            Pinterest </button>
+                                        <a href="{{$fromSettings['telegram']}}">
+
+                                            <button class="button" data-sharer="telegram" data-width="100%" data-title="Telegram" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
+                                                Telegram </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -375,51 +267,7 @@
                 handleStickyAdCloseBtn();
             });
         </script>
-        <footer class="page-footer text-center text-md-left font-small indigo pt-4 mt-4">
-
-            <div class="container-fluid text-center text-md-left">
-                <div class="row">
-
-                    <div class="coll-md-6 pb-3">
-                        <div class="text-center"> <strong>
-                                <h3 class="title mb-3">Meetdownload Service</h3>
-                            </strong></div>
-                        <hr />
-                        <p>
-                            <b>Meetdownload</b> is a service that grabs and serves downloads of files around the internet (public domain).
-                            If you experience an issue with this page, kindly email <b><a href="https://meetdownload.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b9cbdcc9d6cbcdcaf9d4dcdccdddd6ced7d5d6d8dd97dad6d4">[email&#160;protected]</a></b> we will try to fix it.
-                        </p>
-                        <br />
-                        <p>
-                            if you find any infringing files of yours on our service, contact us immediately <b><a href="https://meetdownload.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="21454c4240614c444455454e564f4d4e40450f424e4c">[email&#160;protected]</a></b>.
-                            While we may disable access to the page, the file may still exist on the internet for download.
-                        </p>
-                    </div>
-
-
-                    <div class="coll-md-6 pb-3">
-                        <div class="text-center"> <strong>
-                                <h3 class="title mb-3">Vital Pages</h3>
-                            </strong></div>
-                        <hr />
-                        <ul class="list-unstyled">
-                            <li>
-                                🔥 <a href="https://movies.meetdownload.com/">Latest Movies 2020</a>
-                            </li>
-                            <br />
-                            <li>
-                                🔥 <a href="http://dlmovies.waploaded.ng/">Download Youtube Movies</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-copyright py-3 text-center">
-                Copyright © 2020 Meetdownload Service. All right reserved.
-            </div>
-
-        </footer>
+        {!! $fromSettings['footer_note'] !!}
     </div>
 
     <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>

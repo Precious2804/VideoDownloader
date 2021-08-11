@@ -124,10 +124,6 @@
                                             <input type="url" name="utorrent_url" value="{{old('utorrent_url')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Insert the Utorrent URL here">
                                             <span class="text-danger">@error('utorrent_url'){{ "$message" }}@enderror</span>
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label for="basic-url">Produced By:</label>
-                                            <input type="name" name="name" value="{{old('name')}}" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Name of Producer Here">
-                                        </div>
                                     </div>
                                     <div class="form-row mb-4">
                                         <div class="form-group col-lg-12">
