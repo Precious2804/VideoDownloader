@@ -84,7 +84,9 @@
 
                 <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
                     <div class="widget-content widget-content-area br-6">
-                        <h5 style="color: #009688; font-weight: 700; font-size: 13px;border: none;letter-spacing: 1px;text-transform: uppercase;">All Video Contents</h5>
+                        <div class="col-lg-4">
+                            <h5 style="color: #009688; font-weight: 700; font-size: 13px;border: none;letter-spacing: 1px;text-transform: uppercase;">All Video Contents</h5>
+                        </div>
                         @if(Session::get('deleted'))
                         <div class="alert alert-success">
                             {{Session::get('deleted')}}
@@ -102,6 +104,33 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if(Session::get('title'))
+                                    @foreach($searchResult as $item)
+                                    <tr>
+                                        <td>{{$item->title}}</td>
+                                        <td>{{$item->type}}</td>
+                                        <td>{{$item->video_type}}</td>
+                                        <td>{{$item->created_at}}</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a href="/download/{{$item['unique_id']}}" target="_blank">
+                                                    <button type="button" class="btn btn-dark btn-sm">Open</button>
+                                                </a>
+                                                <button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down">
+                                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                                    </svg>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuReference1">
+                                                    <a class="dropdown-item" href="/edit/{{$item->unique_id}}">Edit</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a style="background-color: red;" class="dropdown-item" href="/delete/{{$item->unique_id}}">Delete</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    @else
                                     @foreach($allVideos as $item)
                                     <tr>
                                         <td>{{$item->title}}</td>
@@ -127,6 +156,8 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                    @endif
+
                                 </tbody>
                             </table>
                         </div>

@@ -49,6 +49,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('change_password', [MainController::class, 'changePassword'])->name('change_password');
     Route::post('add_socials', [MainController::class, 'addSocials'])->name('add_socials');
     Route::post('uploader_note', [MainController::class, 'uploaderNote'])->name('uploader_note');
+    Route::post('custom_logo', [MainController::class, 'customLogo'])->name('custom_logo');
     Route::post('footer_upload', [MainController::class, 'footerUpload'])->name('footer_upload');
-
 });

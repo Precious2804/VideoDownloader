@@ -151,7 +151,6 @@
                                         <th>ID</th>
                                         <th>Title</th>
                                         <th>File Type</th>
-                                        <th>Produced By</th>
                                         <th>Category</th>
                                         <th>Date</th>
                                         <th>Action</th>
@@ -163,7 +162,6 @@
                                         <td>{{$item->id}}</td>
                                         <td>{{$item->title}}</td>
                                         <td>{{$item->type}}</td>
-                                        <td>{{$item->name}}</td>
                                         <td>{{$item->video_type}}</td>
                                         <td>{{$item->created_at}}</td>
                                         <td>

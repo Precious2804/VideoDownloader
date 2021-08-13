@@ -25,6 +25,7 @@ class CreateSettingsTable extends Migration
             $table->string('telegram')->nullable();
             $table->longText('uploader_note')->nullable();
             $table->longText('footer_note')->nullable();
+            $table->longText('logo')->nullable();
             $table->timestamps();
         });
     }

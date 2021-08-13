@@ -71,13 +71,12 @@
     <div class="content_area">
         <div xmlns="http://www.w3.org/1999/html">
             <div class="row">
-                <div class="col-xs-12 col-sm-9 col-md-9">
-                    <!-- <div style="text-align: center;">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div style="text-align: center;">
                         <a class='advert' href='https://meetdownload.com/wl-ad/go/6112e734099cc541285678' target='_blank'>
-                            <script src="../cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="73f7f2fdfafe67cd84c3ffd1-|49"></script><img src='../../i0.wp.com/storage.waploaded.com/images/83e4e5a45845c96edea3be4367e7133d.png' onLoad='wl_ad_imp_1628628788_33173172()' alt='SMM Buy Telegram Members' />
-                            <div id='wl_ad_imp_1628628788_33173172_dom'></div>
+                            <div><img src="{{URL::asset('assets/img/banner.gif')}}" alt=""></div>
                         </a>
-                    </div> -->
+                    </div>
                 </div>
             </div>
             <nav class="panel file-info-panel  is-primary">
@@ -88,7 +87,24 @@
                     <div class="col-xs-12 col-sm-0 col-md-0 col-lg-4">
                         <img src="{{URL::asset($video['image'])}}" style="max-width: 100%; width: 100%; height: 500px;" />
                     </div>
+
                     <div class="col-xs-12 col-md-6 col-lg-8">
+                        @if($video['video_type'] == "Audio")
+                        <div class="panel-block">
+                            <div class="flex flex_row flex_justify_space_between">
+                                <audio controls>
+                                    <source src="{{URL::asset($video['video'])}}">
+                                </audio>
+                            </div>
+                        </div>
+                        @endif
+                        @if($video['video_type'] == "Youtube")
+                        <div class="panel-block">
+                            <div class="flex flex_row flex_justify_space_between">
+                            {!! $video['embed'] !!}
+                            </div>
+                        </div>
+                        @endif
                         <div class="panel-block">
                             <div class="flex flex_row flex_justify_space_between">
                                 <div>
@@ -129,13 +145,18 @@
                             </div>
                         </div>
                         <div style="text-align: center; border: 1px solid red; padding: 5px;">
-                            <ion-icon name="warning"></ion-icon> <span style="color: #1abc9c; font-weight: bold"> Uploader's Note: </span>{{$fromSettings['uploader_note']}} <a target="_blank" href="https://wll.pw/v/74490"><strong>Learn How to Fix it</strong></a></a>
+                            <ion-icon name="warning"></ion-icon> <span style="color: #1abc9c; font-weight: bold"> Uploader's Note: </span>{{$setting['uploader_note']}} <a target="_blank" href="https://wll.pw/v/74490"><strong>Learn How to Fix it</strong></a></a>
                         </div>
                         <p id="fastdl"><br /></p>
                         <div class="panel-block">
                             <div>
-
-
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div style="text-align: center;">
+                                        <a class='advert' href='https://meetdownload.com/wl-ad/go/6112e734099cc541285678' target='_blank'>
+                                            <div><img src="{{URL::asset('assets/img/banner.gif')}}" alt=""></div>
+                                        </a>
+                                    </div>
+                                </div>
                                 <a href="{{$video['url']}}" target="_blank">
                                     <span class="icon is-medium">
                                         <ion-icon size="medium" name="cloud-download-outline"></ion-icon>
@@ -150,7 +171,7 @@
                             <br /><br />
                             <div class="panel-block">
                                 <div class="panel-block">
-                                    <a target="_blank" href="{{$fromSettings['whatsapp_promotion']}}" class="button is-rounded is-success is-medium is-fullwidth mt10">
+                                    <a target="_blank" href="{{$setting['whatsapp_promotion']}}" class="button is-rounded is-success is-medium is-fullwidth mt10">
                                         <span class="icon">
                                             <ion-icon name="logo-whatsapp"></ion-icon>
                                         </span>
@@ -158,7 +179,7 @@
                                     </a>
                                 </div>
                                 <div class="mt20">
-                                    <a target="_blank" href="{{$fromSettings['telegram_promotion']}}" class="button is-rounded is-info is-medium is-fullwidth mt10">
+                                    <a target="_blank" href="{{$setting['telegram_promotion']}}" class="button is-rounded is-info is-medium is-fullwidth mt10">
                                         <span class="icon">
                                             <ion-icon size="medium" name="paper-plane-outline"></ion-icon>
                                         </span>
@@ -179,31 +200,31 @@
                             <div class="panel-block">
                                 <div class="row">
                                     <div class="col-xs-6 col-lg-4">
-                                        <a href="{{$fromSettings['facebook']}}">
+                                        <a href="{{$setting['facebook']}}">
                                             <button class="button" data-sharer="facebook" data-width="100%" data-title="Facebook" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
                                                 Facebook </button>
                                         </a>
                                     </div>
                                     <div class="col-xs-6 col-lg-4">
-                                        <a href="{{$fromSettings['whatsapp']}}">
+                                        <a href="{{$setting['whatsapp']}}">
                                             <button class="button" data-sharer="whatsapp" data-width="100%" data-title="WhatsApp Mobile" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
                                                 WhatsApp Mobile </button>
                                         </a>
                                     </div>
                                     <div class="col-xs-6 col-lg-4">
-                                        <a href="{{$fromSettings['whatsapp']}}">
+                                        <a href="{{$setting['whatsapp']}}">
                                             <button class="button" data-sharer="whatsapp" data-width="100%" data-title="WhatsApp Mobile" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
                                                 WhatsApp Web </button>
                                         </a>
                                     </div>
                                     <div class="col-xs-6 col-lg-4">
-                                        <a href="{{$fromSettings['email']}}">
+                                        <a href="{{$setting['email']}}">
                                             <button class="button" data-sharer="email" data-width="100%" data-title="Email" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
                                                 Email </button>
                                         </a>
                                     </div>
                                     <div class="col-xs-6 col-lg-4">
-                                        <a href="{{$fromSettings['telegram']}}">
+                                        <a href="{{$setting['telegram']}}">
 
                                             <button class="button" data-sharer="telegram" data-width="100%" data-title="Telegram" data-url="waploaded-392-the-green-knight-2021-hdcam-mp4.html">
                                                 Telegram </button>
@@ -267,7 +288,7 @@
                 handleStickyAdCloseBtn();
             });
         </script>
-        {!! $fromSettings['footer_note'] !!}
+        {!! $setting['footer_note'] !!}
     </div>
 
     <script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
@@ -760,6 +781,6 @@
     setTimeout("showIt2()", 3000); // after 3 secs
 </script>
 
-<!-- Mirrored from meetdownload.com/1b1c467239834bcaa0571171d53cb9e1/waploaded-392-the-green-knight-2021-hdcam-mp4 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 10 Aug 2021 20:53:51 GMT -->
+<!-- Mirrored meetdownload.com/1b1c467239834bcaa0571171d53cb9e1/waploaded-392-the-green-knight-2021-hdcam-mp4 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 10 Aug 2021 20:53:51 GMT -->
 
 </html>

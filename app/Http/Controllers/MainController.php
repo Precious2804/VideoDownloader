@@ -9,6 +9,7 @@ use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Traits\Generics;
+use Hamcrest\Core\Set;
 use Illuminate\Support\Facades\Hash;
 
 class MainController extends Controller
@@ -43,6 +44,7 @@ class MainController extends Controller
 
     public function dashboard()
     {
+        $setting = ['setting' => Settings::where('isAdmin', '1')->first()];
         $lastVideo = ['lastVideo' => VideosTable::where('video_type', "Video")->orderBy('created_at', 'desc')->first()];
         $lastAudio = ['lastAudio' => VideosTable::where('video_type', "Audio")->orderBy('created_at', 'desc')->first()];
         $lastYoutube = ['lastYoutube' => VideosTable::where('video_type', "Youtube")->orderBy('created_at', 'desc')->first()];
@@ -52,18 +54,20 @@ class MainController extends Controller
             ->with($lastAudio)
             ->with($lastYoutube)
             ->with($lastUtorrent)
-            ->with($allUploads);
+            ->with($allUploads)
+            ->with($setting);
     }
 
     public function uploadVideo()
     {
-        return view('upload-video');
+        $setting = ['setting' => Settings::where('isAdmin', '1')->first()];
+        return view('upload-video')->with($setting);
     }
 
     public function doUploadVideo(Request $req)
     {
         $req->validate([
-            'video'=>'mimes:mpeg,ogg,mp4,webm,3gp,mov,flv,avi,wmv,ts|max:102400'
+            'video' => 'mimes:mpeg,ogg,mp4,webm,3gp,mov,flv,avi,wmv,ts|max:102400'
         ]);
 
         $upload = 'video_url';
@@ -75,11 +79,16 @@ class MainController extends Controller
 
     public function uploadAudio()
     {
-        return view('upload-audio');
+        $setting = ['setting' => Settings::where('isAdmin', '1')->first()];
+        return view('upload-audio')->with($setting);
     }
 
     public function doUploadAudio(Request $req)
     {
+        $req->validate([
+            'video' => 'required|mpeg,mpga,mp3,wav|max:102400'
+        ]);
+
         $upload = 'audio_url';
         $url = $req->audio_url;
         $video_type = "Audio";
@@ -89,13 +98,15 @@ class MainController extends Controller
     public function allUploads()
     {
         $allUploads = ['allUploads' => VideosTable::all()];
-        return view('all-uploads')->with($allUploads);
+        $setting = ['setting' => Settings::where('isAdmin', '1')->first()];
+        return view('all-uploads')->with($allUploads)->with($setting);
     }
 
     public function edit($unique_id)
     {
+        $setting = ['setting' => Settings::where('isAdmin', '1')->first()];
         $findUpload = ['findUpload' => VideosTable::where('unique_id', $unique_id)->first()];
-        return view('/edit')->with($findUpload);
+        return view('/edit')->with($findUpload)->with($setting);
     }
 
     public function doEdit(Request $req)
@@ -137,11 +148,16 @@ class MainController extends Controller
 
     public function uploadYoutube()
     {
-        return view('upload-youtube');
+        $setting = ['setting' => Settings::where('isAdmin', '1')->first()];
+        return view('upload-youtube')->with($setting);
     }
 
     public function doUploadYoutube(Request $req)
     {
+        $req->validate([
+            'embed' => 'required'
+        ]);
+
         $upload = 'youtube_url';
         $url = $req->youtube_url;
         $video_type = "Youtube";
@@ -150,11 +166,16 @@ class MainController extends Controller
 
     public function uploadUtorrent()
     {
-        return view('upload-utorrent');
+        $setting = ['setting' => Settings::where('isAdmin', '1')->first()];
+        return view('upload-utorrent')->with($setting);
     }
 
     public function doUploadUtorrent(Request $req)
     {
+        $req->validate([
+            'video' => 'mimes:mpeg,ogg,mp4,webm,3gp,mov,flv,avi,wmv,ts|max:102400'
+        ]);
+
         $upload = 'utorrent_url';
         $url = $req->utorrent_url;
         $video_type = "UTorrent";
@@ -163,36 +184,41 @@ class MainController extends Controller
 
     public function downloadVideo($unique_id)
     {
-        $fromSettings = ['fromSettings'=>Settings::where('isAdmin', '1')->first()];
+        $setting = ['setting' => Settings::where('isAdmin', '1')->first()];
         $video = ['video' => VideosTable::where('unique_id', $unique_id)->first()];
         return view('download')
-                                    ->with($fromSettings)
-                                    ->with($video);
+            ->with($setting)
+            ->with($video);
     }
 
     public function allVideo()
     {
+        $setting = ['setting' => Settings::where('isAdmin', '1')->first()];
         $allVideos = ['allVideos' => VideosTable::where('video_type', "Video")->get()];
-        return view('all-video', $allVideos);
+        return view('all-video', $allVideos)->with($setting);
     }
     public function allYoutube()
     {
+        $setting = ['setting' => Settings::where('isAdmin', '1')->first()];
         $allYoutubes = ['allYoutubes' => VideosTable::where('video_type', "Youtube")->get()];
-        return view('all-youtube', $allYoutubes);
+        return view('all-youtube', $allYoutubes)->with($setting);
     }
     public function allUtorrent()
     {
+        $setting = ['setting' => Settings::where('isAdmin', '1')->first()];
         $allUtorrents = ['allUtorrents' => VideosTable::where('video_type', "UTorrent")->get()];
-        return view('all-utorrent', $allUtorrents);
+        return view('all-utorrent', $allUtorrents)->with($setting);
     }
     public function allAudio()
     {
+        $setting = ['setting' => Settings::where('isAdmin', '1')->first()];
         $allAudios = ['allAudios' => VideosTable::where('video_type', "Audio")->get()];
-        return view('all-audio', $allAudios);
+        return view('all-audio', $allAudios)->with($setting);
     }
     public function createAdmin()
     {
-        return view('create-admin');
+        $setting = ['setting' => Settings::where('isAdmin', '1')->first()];
+        return view('create-admin')->with($setting);
     }
     public function doCreateAdmin(Request $req)
     {
@@ -218,8 +244,9 @@ class MainController extends Controller
 
     public function profile()
     {
+        $setting = ['setting' => Settings::where('isAdmin', '1')->first()];
         $user = ['user' => Auth::user()];
-        return view('profile', $user);
+        return view('profile', $user)->with($setting);
     }
 
     public function doEditProfile(Request $req)
@@ -281,7 +308,7 @@ class MainController extends Controller
     {
         $prev_setting = Settings::where('isAdmin', '1')->first();
         $prev_setting->update([
-            'uploader_note'=>$req->uploader_note
+            'uploader_note' => $req->uploader_note
         ]);
 
         return back()->with('done', "Uploader note changes was effected successfully");
@@ -290,9 +317,19 @@ class MainController extends Controller
     {
         $prev_setting = Settings::where('isAdmin', '1')->first();
         $prev_setting->update([
-            'footer_note'=>$req->footer_note
+            'footer_note' => $req->footer_note
         ]);
 
         return back()->with('footer_change', "Footer note changes was effected successfully");
+    }
+
+    public function customLogo(Request $req)
+    {
+        $prev_setting = Settings::where('isAdmin', '1')->first();
+        $prev_setting->update([
+            'logo' => $req->logo
+        ]);
+
+        return back()->with('logo', "Custom Logo Created Successfully");
     }
 }

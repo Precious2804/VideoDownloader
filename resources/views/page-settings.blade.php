@@ -100,6 +100,11 @@
                             {{Session::get('footer_change')}}
                         </div>
                         @endif
+                        @if(Session::get('logo'))
+                        <div class="alert alert-success">
+                            {{Session::get('logo')}}
+                        </div>
+                        @endif
                             <form method="POST" action="{{route('add_socials')}}">
                                 @csrf
                                 <div class="form-row mb-4">
@@ -164,6 +169,25 @@
                         </div>
                     </div>
                 </div>
+                <!-- <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
+                    <div class="skills layout-spacing ">
+                        <h3>Custom Logo</h3>
+                        <div class="widget-content widget-content-area">
+                            <form action="{{route('custom_logo')}}" method="POST">
+                                @csrf
+                                <div class="form-row mb-4">
+                                    <div class="form-group col-lg-12">
+                                        <label for="">Custom Logo</label>
+                                        <textarea name="logo" id="" cols="30" placeholder="Create Custom Logo Here" rows="10" class="form-control">{{$setting['logo']}}</textarea>
+                                    </div>
+                                    <div class="form-group col-lg-12">
+                                        <button type="submit" class="btn btn-lg btn-secondary">Submit Now</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> -->
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 layout-top-spacing">
                     <div class="skills layout-spacing ">
                         <h3>Footer Note:</h3>

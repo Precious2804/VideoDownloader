@@ -3,6 +3,7 @@
 namespace app\Traits;
 
 use App\Models\VideosTable;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Str;
 
 
@@ -69,6 +70,7 @@ trait Generics
                 'size' => $req->size,
                 'video_type'=>$video_type,
                 'url' => $url,
+                'embed'=>$req->embed,
                 'subtitle' => $req->subtitle,
                 'description' => $req->description,
                 'image'=>$req->image = '/storage/' . $filePath

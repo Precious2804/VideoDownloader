@@ -19,7 +19,8 @@ class VideosTable extends Model
         'subtitle',
         'description',
         'image',
-        'video'
+        'video',
+        'embed'
     ];
 
     public $incrementing = false;

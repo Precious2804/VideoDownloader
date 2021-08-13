@@ -18,6 +18,7 @@ class Settings extends Model
         'telegram',
         'uploader_note',
         'footer_note',
-        'isAdmin'
+        'isAdmin',
+        'logo'
     ];
 }

@@ -146,6 +146,11 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="">Upload Video (max. size of 10MB)</label>
+                                            <input type="file" name="video" class="form-control">
+                                            <span class="text-danger">@error('video'){{ "$message" }}@enderror</span>
+                                        </div>
                                     </div>
                                     <div class="form-row mb-4">
                                         <div class="form-group col-lg-12">
